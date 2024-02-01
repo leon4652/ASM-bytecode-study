@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+//Build.gradle에서 다음과 같이 지정하면, 이전처럼 수동으로 만들 필요 없이 기본적으로 MANIFEST.MF 파일을 만들어준다.
+jar {
+    manifest {
+        attributes(
+                'Manifest-Version': '1.0',
+                'Premain-Class': 'org.agent.MyAgent',
+                'Can-Redefine-Classes': 'true',
+                'Can-Retransform-Classes': 'true'
+        )
+    }
+}
