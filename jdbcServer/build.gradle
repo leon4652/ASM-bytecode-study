@@ -30,6 +30,11 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+    //add libs files
+    implementation fileTree(dir: 'libs', includes: ['*.jar'])
+    //implementation files('libs/AgentV1_0201-1.0-SNAPSHOT.jar')
 }
 
 tasks.named('test') {

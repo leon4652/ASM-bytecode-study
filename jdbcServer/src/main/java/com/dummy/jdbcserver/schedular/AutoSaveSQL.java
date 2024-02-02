@@ -19,7 +19,7 @@ public class AutoSaveSQL {
 
     private final SqlDummyRepository sqlDummyRepository;
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 60000)
     public void autoLog() {
         LocalDateTime now = LocalDateTime.now();
         log.warn("nowTime = {}", now);
