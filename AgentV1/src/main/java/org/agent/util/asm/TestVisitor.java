@@ -20,13 +20,13 @@ public class TestVisitor extends ClassVisitor {
         MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
         // 여기서 mv는 기존 메서드 방문자를 나타내며, 필요에 따라 래핑하여 추가 기능을 구현할 수 있다.
         System.out.println("Call visitMethod");
-        
+
         //(Logic)
         
         return mv; // 변형된 MethodVisitor 반환
     }
 
-    //ClassReader가 모든 요소를 처리하고 마무리할때 호출
+    //ClassReader가 모든 요소를 처리하고 마무리할 때 호출
     @Override
     public void visitEnd() {
         System.out.println("visitEnd");

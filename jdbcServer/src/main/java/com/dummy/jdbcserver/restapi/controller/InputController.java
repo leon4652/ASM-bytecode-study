@@ -16,4 +16,14 @@ public class InputController {
         return "hello";
     }
 
+    @GetMapping("/dummy")
+    public String dummy() {
+        return "hello, dummy";
+    }
+
+    @GetMapping("/dummy-insert")
+    public String insertByteCode() {
+        String rawString = "this is raw code";
+        return rawString;
+    }
 }

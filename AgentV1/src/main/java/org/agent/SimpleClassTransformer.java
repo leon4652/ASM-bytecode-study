@@ -38,11 +38,12 @@ public class SimpleClassTransformer implements ClassFileTransformer {
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
         // 바이트코드 변경 로직
-        // com/dummy/jdbcserver/restapi/controller/InputController 컨트롤러를 읽을 때만 실행
         if (className.equals("com/dummy/jdbcserver/restapi/controller/InputController")) {
             System.out.println("특정 클래스 : " + className + " 에 대한 로직 수행");
             System.out.println(classfileBuffer);
             //return ReadClass.simpleTest(classfileBuffer); //TestVisitor 수행
+            //return ReadClass.TestMethodVisitor(classfileBuffer); //TestVisitorAddParse 수행
+            return ReadClass.TestRefactorCodeVisitor(classfileBuffer); //TestVisitorAddParse 수행
         }
 
         return classfileBuffer;
