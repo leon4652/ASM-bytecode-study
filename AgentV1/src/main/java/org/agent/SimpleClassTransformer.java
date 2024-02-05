@@ -1,6 +1,8 @@
 package org.agent;
 
 import org.agent.util.asm.ReadClass;
+import org.agent.util.asm.TestVisitor;
+import org.objectweb.asm.*;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -30,18 +32,17 @@ import java.security.ProtectionDomain;
 
 public class SimpleClassTransformer implements ClassFileTransformer {
 
-
     //이 인터페이스의 구현체(transform)은 JVM이 존재하는 클래스를 로드할 때마다 호출되며, 이 시점에서 바이트코드를 조사하고 변경할 수 있다.
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
-        
+
         // 바이트코드 변경 로직
-        // 예를 들어, className이 "com/myapp/MyClass" 일 때 변경 로직을 적용
+        // com/dummy/jdbcserver/restapi/controller/InputController 컨트롤러를 읽을 때만 실행
         if (className.equals("com/dummy/jdbcserver/restapi/controller/InputController")) {
             System.out.println("특정 클래스 : " + className + " 에 대한 로직 수행");
             System.out.println(classfileBuffer);
-            ReadClass.read(classfileBuffer);
+            //return ReadClass.simpleTest(classfileBuffer); //TestVisitor 수행
         }
 
         return classfileBuffer;

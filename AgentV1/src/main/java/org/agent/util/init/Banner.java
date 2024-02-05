@@ -1,8 +1,10 @@
-package org.agent.util;
+package org.agent.util.init;
+
+import java.time.LocalDateTime;
 
 public class Banner {
 
-    public static void send() {
+    public static void send(String agentArgs) {
         System.out.println("  /$$$$$$   /$$$$$$  /$$      /$$        /$$$$$$                                  /$$ ");
         System.out.println(" /$$__  $$ /$$__  $$| $$$    /$$$       /$$__  $$                                | $$    ");
         System.out.println("| $$  \\ $$| $$  \\__/| $$$$  /$$$$      | $$  \\ $$  /$$$$$$   /$$$$$$  /$$$$$$$  /$$$$$$  ");
@@ -15,6 +17,6 @@ public class Banner {
         System.out.println("                                                 |  $$$$$$/                              ");
         System.out.println("                                                  \\______/                               ");
 
-
+        System.out.println("nowTime : " + LocalDateTime.now() + " my Agent has been invoked with args: " + agentArgs);
     }
 }

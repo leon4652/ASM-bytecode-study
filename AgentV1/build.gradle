@@ -1,9 +1,10 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group = 'org.sch'
-version = '1.1'
+version = '1.2'
 
 repositories {
     mavenCentral()
@@ -23,8 +24,22 @@ test {
     useJUnitPlatform()
 }
 
-//Build.gradle에서 다음과 같이 지정하면, 이전처럼 수동으로 만들 필요 없이 기본적으로 MANIFEST.MF 파일을 만들어준다.
-jar {
+////Build.gradle에서 다음과 같이 지정하면, 이전처럼 수동으로 만들 필요 없이 기본적으로 MANIFEST.MF 파일을 만들어준다.
+//shadowJar으로 대체
+//jar {
+//    manifest {
+//        attributes(
+//                'Manifest-Version': '1.0',
+//                'Premain-Class': 'org.agent.MyAgent',
+//                'Can-Redefine-Classes': 'true',
+//                'Can-Retransform-Classes': 'true'
+//        )
+//    }
+//}
+
+//shadowJar 설정
+shadowJar {
+    archiveClassifier.set('')
     manifest {
         attributes(
                 'Manifest-Version': '1.0',

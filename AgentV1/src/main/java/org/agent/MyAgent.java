@@ -1,7 +1,6 @@
 package org.agent;
 
-import org.agent.util.Banner;
-import org.agent.util.CallThread;
+import org.agent.util.init.Banner;
 
 import java.lang.instrument.Instrumentation;
 import java.time.LocalDateTime;
@@ -13,15 +12,7 @@ public class MyAgent {
      * 이 객체는 JVM이 제공하는 인스트루멘테이션 기능에 접근할 수 있게 해준다.
      */
     public static void premain(String agentArgs, Instrumentation instrumentation) {
-        Banner.send(); //로그 찍기
-        System.out.println("nowTime : " + LocalDateTime.now() + " my Agent has been invoked with args: " + agentArgs);
-//        CallThread.run(); //쓰레드 생성 후 동작
-
-//        //Instrumentation 객체를 사용하여 로드된 클래스들의 목록을 조회하고, 특정 클래스의 인스턴스 수를 확인하는 예시
-//        Class[] loadedClasses = instrumentation.getAllLoadedClasses();
-//        for (Class loadedClass : loadedClasses) {
-//            System.out.println(loadedClass.getName());
-//        }
+        Banner.send(agentArgs); //로그 찍기
 
         /**
          *  Instrumentation 객체의 addTransformer를 통해 인터페이스 구현 클래스를 '등록'한다.
