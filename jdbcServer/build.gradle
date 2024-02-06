@@ -31,8 +31,12 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    //for webclient
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'io.projectreactor:reactor-core:3.6.2'
 
-    //add libs files
+
+    //add libs files for agent
     implementation fileTree(dir: 'libs', includes: ['*.jar'])
     //implementation files('libs/AgentV1_0201-1.0-SNAPSHOT.jar')
 }
