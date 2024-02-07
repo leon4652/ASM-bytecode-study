@@ -5,6 +5,7 @@ import org.agent.util.asm.testcode.*;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,19 +21,19 @@ import java.time.format.DateTimeFormatter;
 @Slf4j
 public class AsmCodeFactory {
 
-    public static String methodName;
+    public static String testCode;
 
     public static byte[] doMethod(byte[] classfileBuffer) {
         ClassReader classReader = new ClassReader(classfileBuffer);
         ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
 
         try {
-            ClassVisitor classVisitor = setVisitor(classWriter); // method 명에 따른 ClassVisitor 생성
+            ClassVisitor classVisitor = setVisitor(classWriter); // testClass 명에 따른 ClassVisitor 생성
             classReader.accept(classVisitor, 0); //ClassVisitor 에게 정보 부여
             printClass(classWriter.toByteArray()); //class 파일 출력
             log.info("done print");
         } catch (Exception e) {
-            System.out.println("try catch Err 발생 : " + e.getMessage());
+            log.warn("try catch Err 발생 : {}", e.getMessage());
         }
         return classWriter.toByteArray();
     }
@@ -52,13 +53,13 @@ public class AsmCodeFactory {
     }
 
     /**
-     *  method 명에 따른 ClassVisitor 생성
+     *  Class 명에 따른 ClassVisitor 생성
      *  /asm/testcode 내부의 visitor를 return
      * @param classWriter
      * @return classVisitor
      */
     private static ClassVisitor setVisitor(ClassWriter classWriter) {
-        switch (methodName) {
+        switch (testCode) {
             case "TestVisitor" -> {
                 return new TestVisitor(classWriter);
             }
@@ -77,7 +78,10 @@ public class AsmCodeFactory {
             case "DataSourceVisitor" -> {
                 return new DataSourceVisitor(classWriter);
             }
-            default -> throw new IllegalArgumentException("Unsupported method name: " + methodName);
+            case "VisitField" -> {
+                return new VisitField(classWriter, "myStr");
+            }
+            default -> throw new IllegalArgumentException("Unsupported method name: " + testCode);
         }
     }
 

@@ -25,10 +25,11 @@ public class DataSourceVisitor extends ClassVisitor {
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
         MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
 
-        //DataSource 확인
-        if (name.contains("DataSource")) {
-            System.out.println("find DataSource : " + name) ;
-            System.out.println("class : " + className);
+        //DataSource 클래스 확인 후 getConnection 확인
+        if(name.contains("getConnection")){
+            System.out.println("Class : " + className);
+            System.out.println("method : " + name);
+            System.out.println("");
         }
 
         // execute, executeQuery, executeUpdate 메서드 확인

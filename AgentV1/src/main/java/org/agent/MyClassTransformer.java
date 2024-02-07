@@ -1,11 +1,9 @@
 package org.agent;
 
+import lombok.extern.slf4j.Slf4j;
 import org.agent.util.asm.AsmCodeFactory;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.instrument.ClassFileTransformer;
-import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
 /**
@@ -30,37 +28,32 @@ import java.security.ProtectionDomain;
  * JVM은 이 코드를 사용하여 Class를(바이트코드에 의해 변경된 클래스를) 정의한다.
  */
 
+@Slf4j
 public class MyClassTransformer implements ClassFileTransformer {
+
 
     //이 인터페이스의 구현체(transform)은 JVM이 존재하는 클래스를 로드할 때마다 호출되며, 이 시점에서 바이트코드를 조사하고 변경할 수 있다.
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) {
+//        // 바이트코드 변경 로직
+//        if (className.equals("com/dummy/jdbcserver/restapi/controller/InputController")) {
+//            System.out.println("특정 클래스 : " + className + " 에 대한 로직 수행");
+//            AsmCodeFactory.testCode = "TestRefactorCodeVisitor";
+//            return AsmCodeFactory.doMethod(classfileBuffer); //테스트 코드 실행
+//        }
 
-        // 바이트코드 변경 로직
-        if (className.equals("com/dummy/jdbcserver/restapi/controller/InputController")) {
-            System.out.println("특정 클래스 : " + className + " 에 대한 로직 수행");
 
-            //AsmCodeFactory.methodName = "TestVisitor";
-            //AsmCodeFactory.methodName = "TestMethodVisitor";
-            AsmCodeFactory.methodName = "TestRefactorCodeVisitor";
-            //AsmCodeFactory.methodName = "TestRemoveCodeVisitor";
+//        //psmt 바이트코드 변경 로직
+//        if (className.contains("DataSource")) {
+//            AsmCodeFactory.testCode = "DataSourceVisitor";
+//            return AsmCodeFactory.doMethod(classfileBuffer); //테스트 코드 실행
+//        }
 
-            return AsmCodeFactory.doMethod(classfileBuffer); //테스트 코드 실행
-        }
 
-        //psmt 바이트코드 변경 로직
-        if (className.contains("ProxyPreparedStatement") ) {
-            AsmCodeFactory.methodName = "PreparedStatementModifyVisitor";
-            return AsmCodeFactory.doMethod(classfileBuffer); //테스트 코드 실행
-        }
-
-        //명시적으로 datasource 주소를 com/zaxxer/hikari/HikariDataSource 지정하였으나, 추후 수정 필요
-        if(className.equals("com/zaxxer/hikari/HikariDataSource")) {
-            // ASM 라이브러리를 사용하여 HikariDataSource의 바이트코드를 조작
-            AsmCodeFactory.methodName = "DataSourceVisitor";
+        if(className.contains("TestClass")) {
+            AsmCodeFactory.testCode = "VisitField";
             return AsmCodeFactory.doMethod(classfileBuffer);
-
         }
 
         return classfileBuffer;
@@ -68,3 +61,4 @@ public class MyClassTransformer implements ClassFileTransformer {
 
 
 }
+
