@@ -2,6 +2,7 @@ package org.agent.util.asm;
 
 import lombok.extern.slf4j.Slf4j;
 import org.agent.util.asm.testcode.*;
+import org.agent.util.asm.testcode.hikari.HikariAdd;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -30,26 +31,11 @@ public class AsmCodeFactory {
         try {
             ClassVisitor classVisitor = setVisitor(classWriter); // testClass 명에 따른 ClassVisitor 생성
             classReader.accept(classVisitor, 0); //ClassVisitor 에게 정보 부여
-            printClass(classWriter.toByteArray()); //class 파일 출력
-            log.info("done print");
+            CodePrinter.printClass(classWriter.toByteArray());
         } catch (Exception e) {
-            log.warn("try catch Err 발생 : {}", e.getMessage());
+            log.warn("doMethod ERR : {}", e.getMessage());
         }
         return classWriter.toByteArray();
-    }
-
-
-    /**
-     *   바이트코드 조작 후 Class 파일 출력 로직
-     */
-    public static void printClass(byte[] bytecodes) throws IOException {
-        DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
-        String fileName = "printer " + LocalDateTime.now().format(formattedDate) + ".class";
-        String filePath = System.getProperty("user.dir") + File.separator + "byteLog" + File.separator + fileName;    //path
-        FileOutputStream out = new FileOutputStream(filePath);      //stream
-
-        out.write(bytecodes);
-        out.close();
     }
 
     /**
@@ -80,6 +66,9 @@ public class AsmCodeFactory {
             }
             case "VisitField" -> {
                 return new VisitField(classWriter, "myStr");
+            }
+            case "HikariAdd" -> {
+                return new HikariAdd(classWriter);
             }
             default -> throw new IllegalArgumentException("Unsupported method name: " + testCode);
         }

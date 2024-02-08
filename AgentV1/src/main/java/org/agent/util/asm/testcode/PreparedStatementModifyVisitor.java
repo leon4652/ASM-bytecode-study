@@ -19,7 +19,7 @@ public class PreparedStatementModifyVisitor extends ClassVisitor {
     @Override
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
         super.visit(version, access, name, signature, superName, interfaces);
-        currentClassName = name.replace('/', ',');
+        currentClassName = name.replace('/', '.');
     }
 
     @Override
@@ -64,8 +64,6 @@ public class PreparedStatementModifyVisitor extends ClassVisitor {
         @Override
         public void visitEnd() {
             super.visitEnd();
-
-
         }
     }
 

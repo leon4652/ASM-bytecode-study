@@ -36,28 +36,21 @@ public class MyClassTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) {
-//        // 바이트코드 변경 로직
-//        if (className.equals("com/dummy/jdbcserver/restapi/controller/InputController")) {
-//            System.out.println("특정 클래스 : " + className + " 에 대한 로직 수행");
-//            AsmCodeFactory.testCode = "TestRefactorCodeVisitor";
-//            return AsmCodeFactory.doMethod(classfileBuffer); //테스트 코드 실행
-//        }
 
-
-//        //psmt 바이트코드 변경 로직
-//        if (className.contains("DataSource")) {
+        //DataSource
+        if (className.contains("com/zaxxer/hikari/HikariDataSource")) {
 //            AsmCodeFactory.testCode = "DataSourceVisitor";
-//            return AsmCodeFactory.doMethod(classfileBuffer); //테스트 코드 실행
-//        }
-
-
-        if(className.contains("TestClass")) {
-            AsmCodeFactory.testCode = "VisitField";
-            return AsmCodeFactory.doMethod(classfileBuffer);
+            AsmCodeFactory.testCode = "HikariAdd";
+            return AsmCodeFactory.doMethod(classfileBuffer); //테스트 코드 실행
+        }
+        if (className.contains("PreparedStatement")) {
+            AsmCodeFactory.testCode = "PreparedStatementModifyVisitor";
+            return AsmCodeFactory.doMethod(classfileBuffer); //테스트 코드 실행
         }
 
         return classfileBuffer;
     }
+
 
 
 }

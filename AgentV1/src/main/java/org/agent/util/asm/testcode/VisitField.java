@@ -24,13 +24,13 @@ public class VisitField extends ClassVisitor {
     @Override
     public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
         if(name.equals(fName)){
+            System.out.println("isField .. True");
             isFieldPresent = true;
         }
 
         // "a"라는 이름의 static int 필드를 삭제하는 조건 : 순회 시 발견
         if ("a".equals(name) && "I".equals(descriptor) && (access & Opcodes.ACC_STATIC) != 0) {
             // 특정 조건을 만족하는 필드는 방문 처리를 생략하여 삭제 효과를 낸다.
-            System.out.println("find static A method");
             return null;
         }
 
@@ -38,13 +38,16 @@ public class VisitField extends ClassVisitor {
         return super.visitField(access, name, descriptor, signature, value);
     }
 
-    //여기의 visitEnd는 lassVisitor의 visitEnd
+    //여기의 visitEnd는 classVisitor의 visitEnd
     @Override
     public void visitEnd() {
         System.out.println("visitEnd 호출 : ");
         if(!isFieldPresent){
-            cv.visitField(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, fName, "Ljava/lang/String", null, null);
-//            cv.visitField(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "newFieldInt", "I", null, 42);
+            System.out.println("인자 추가");
+            cv.visitField(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, fName, "Ljava/lang/String;", null, null);
+            cv.visitField(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "newFieldInt", "I", null, 42);
+
+            System.out.println("추가 완료!");
         }
         super.visitEnd();
     }

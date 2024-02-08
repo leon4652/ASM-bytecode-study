@@ -1,5 +1,6 @@
 package org.agent.util.asm.testcode;
 
+import org.agent.util.asm.CodePrinter;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -30,6 +31,7 @@ public class DataSourceVisitor extends ClassVisitor {
             System.out.println("Class : " + className);
             System.out.println("method : " + name);
             System.out.println("");
+            return new AddLogVisitor(mv, name);
         }
 
         // execute, executeQuery, executeUpdate 메서드 확인
