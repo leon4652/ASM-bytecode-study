@@ -9,7 +9,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class JdbcServerApplication {
 
     public static void main(String[] args) {
-            SpringApplication.run(JdbcServerApplication.class, args);
+
+        SpringApplication.run(JdbcServerApplication.class, args);
     }
 
 
