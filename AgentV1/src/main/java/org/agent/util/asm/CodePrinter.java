@@ -14,9 +14,9 @@ public class CodePrinter {
     /**
      *   바이트코드 조작 후 Class 파일 출력 로직
      */
-    public static void printClass(byte[] bytecodes) throws IOException {
-        DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
-        String fileName = "printer " + LocalDateTime.now().format(formattedDate) + ".class";
+    public static void printClass(byte[] bytecodes, String testCode) throws IOException {
+        DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        String fileName = LocalDateTime.now().format(formattedDate) + testCode + ".class";
         String filePath = System.getProperty("user.dir") + File.separator + "byteLog" + File.separator + fileName;    //path
         FileOutputStream out = new FileOutputStream(filePath);      //stream
 

@@ -14,12 +14,12 @@ public class Chap03Transformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) {
-        String containsName = "Chap03";
+        String containsName = "BasicExample"; //스캔할 Class네임 일부 입력
 
-
+        //GetFSetF
         if (className.contains(containsName)) {
             log.warn("[TRANSFORM] Find ClassName : {}", containsName);
-            AsmCodeFactory.testCode = "SetF";
+            AsmCodeFactory.testCode = containsName; //이 Agent 파일에서 실행할 Class testcode 이름 입력(일반적으로 containsName과 동일함)
             return AsmCodeFactory.doMethod(classfileBuffer, true); //테스트 코드 실행
         }
 

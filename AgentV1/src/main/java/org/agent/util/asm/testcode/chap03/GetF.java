@@ -45,7 +45,7 @@ public class GetF extends ClassVisitor {
         if (mv != null) { //MethodVisitor 객체의 유효성을 검사
             mv.visitCode();             //메서드의 바이트코드 방문을 시작
             mv.visitVarInsn(ALOAD, 0);  //로컬 변수 배열에서 첫 번째 변수를 로드하여 피연산자 스택에 푸시
-            mv.visitFieldInsn(GETFIELD, "com/dummy/jdbcserver/Chap03", "f", "I"); //객체의 필드에 접근
+            mv.visitFieldInsn(GETFIELD, "com/dummy/jdbcserver/GetFSetF", "f", "I"); //객체의 필드에 접근
             mv.visitInsn(IRETURN);      //정수 값을 반환. 피연산자 스택의 상단에 있는 값을 반환값으로 사용하여 메서드 호출을 종료
             mv.visitMaxs(1, 1);         //메서드의 최대 스택 크기와 지역 변수의 수를 지정.
             mv.visitEnd();              //메서드 방문을 종료 (visitEnd 종료) -- (A)
