@@ -17,15 +17,12 @@ public class BasicExample extends ClassVisitor {
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
-
         return cv.visitMethod(access, name, descriptor, signature, exceptions);
     }
 
     @Override
     public void visitEnd() {
-        //클래스 변수 생성하기
-        cv.visitField(ACC_PUBLIC + ACC_STATIC, "newCreateStaticField", "I", null, null);
-        visitFieldInsn(); //클래스 변수에 값 넣어보기
+        visitFieldInsn();               //일반 전역 변수 및 static 변수 생성자 생성 및 조작
         printTest();                    //Sysout 출력
         exceptionAndInput();            //예외와 출력 테스트
         visitLocalVariableAnnotation(); //지역 변수 생성 및 어노테이션 적용
@@ -35,12 +32,44 @@ public class BasicExample extends ClassVisitor {
     }
 
     public void visitFieldInsn() {
-//        MethodVisitor mv //
-//        //1. 정적 변수(static)에 값 넣기
-//        mv.visitInsn(ICONST_5);
-//        mv.visitFieldInsn();
-//
-//        //2. 일반 전역 변수에 값 넣기
+        //1. 일반 필드 추가 및 값 넣기 (변수가 있다면 visitField 수행, 아니라면 새로 생성)
+        FieldVisitor fv = cv.visitField(ACC_PUBLIC, "makeNewField", "I", null, null);
+        if (fv != null) {
+            //1-1. 커스텀 생성자 만들기
+
+            //1-2. 기본 생성자 예시
+//            MethodVisitor mv = cv.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null); //생성자 만들기
+            //하지만 위처럼 실행하면 ClassFormatErr 발생, 이미 기본 생성자가 java에서는 알아서 생성되기 때문(똑같은 생성자 만들면 중복 에러)
+
+            //1-3. 커스텀 생성자
+            //그렇기에 매개변수를 다르게 하여, 다른 생성자를 추가하겠음. : 이제 Int형 변수를 받는다.
+            MethodVisitor mv = cv.visitMethod(ACC_PUBLIC, "<init>", "(I)V", null, null); //생성자 만들기
+            mv.visitCode(); //방문 시작
+
+            //1-4. Object(상위)의 기본 생성자 호출 : java에서는 하위 클래스 생성자 호출 시 상위도 같이 호출하기 때문.
+            // 이는 우리가 암묵적으로 사용하던 부모 클래스 생성자 호출 super()와 동일하다고 이해하면 된다.
+            mv.visitVarInsn(ALOAD, 0); // this 참조
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
+
+            //1-5. 커스텀 생성자를 통한 매개변수 값 할당
+            mv.visitVarInsn(ALOAD, 0); //this(자기자신 - 커스텀 생성자) stack에 넣기
+            mv.visitLdcInsn(1000); //stack에 값 넣기
+            mv.visitFieldInsn(PUTFIELD, "com/dummy/jdbcserver/example_asm/chap3/BasicExample", "makeNewField", "I");
+            mv.visitInsn(RETURN);
+            mv.visitMaxs(0,0);
+            mv.visitEnd();
+            fv.visitEnd();
+        }
+
+        //3. 정적 변수(static)에 값 넣기
+        //먼저 Java 클래스의 정적 초기화 블록을 호출한다.
+        MethodVisitor mv = cv.visitMethod(ACC_STATIC, "<clinit>", "()V", null, null);
+        mv.visitCode();
+        mv.visitLdcInsn(123); //스택에 값 넣기
+        mv.visitFieldInsn(PUTSTATIC, "com/dummy/jdbcserver/example_asm/chap3/BasicExample" , "staticVal", "I");
+        mv.visitInsn(RETURN);
+        mv.visitMaxs(0, 0);
+        mv.visitEnd();
     }
 
     public void visitLocalVariableAnnotation() {

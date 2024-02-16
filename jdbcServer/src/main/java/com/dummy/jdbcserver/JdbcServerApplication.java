@@ -10,12 +10,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class JdbcServerApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // 가장 먼저 Load되는 main 내부에 Scan할 수 있도록 객체 생성
         BasicExample basicExample = new BasicExample();
         StatelessTransformationsExample statelessTransformationsExample = new StatelessTransformationsExample();
+        statelessTransformationsExample.m();
+        System.out.println("[End Of Main]");
 
-        SpringApplication.run(JdbcServerApplication.class, args);
+//        SpringApplication.run(JdbcServerApplication.class, args);
     }
 
 

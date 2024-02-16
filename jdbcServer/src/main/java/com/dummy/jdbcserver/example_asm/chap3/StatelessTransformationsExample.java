@@ -17,8 +17,9 @@ public class StatelessTransformationsExample {
 
  */
 public class StatelessTransformationsExample {
+
     public void m() throws Exception {
-        Thread.sleep(100);
+        Thread.sleep(2000);
     }
 }
 

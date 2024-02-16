@@ -2,8 +2,6 @@ package org.agent;
 
 import org.agent.util.init.*;
 import org.agent.util.transform.Chap03Transformer;
-import org.agent.util.transform.DebugTransformer;
-import org.agent.util.transform.MyClassTransformer;
 
 import java.lang.instrument.Instrumentation;
 

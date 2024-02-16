@@ -14,7 +14,7 @@ public class Chap03Transformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) {
-        String containsName = "BasicExample"; //스캔할 Class네임 일부 입력
+        String containsName = "StatelessTransformationsExample"; //스캔할 Class네임 일부 입력
 
         //GetFSetF
         if (className.contains(containsName)) {
