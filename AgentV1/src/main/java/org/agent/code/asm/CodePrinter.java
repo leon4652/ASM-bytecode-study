@@ -1,0 +1,34 @@
+package org.agent.code.asm;
+
+import lombok.extern.slf4j.Slf4j;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+
+@Slf4j
+public class CodePrinter {
+
+    /**
+     * 바이트코드 조작 후 Class 파일 출력 로직
+     */
+    public static void printClass(byte[] bytecodes, String testCode) throws IOException {
+        DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        String fileName = LocalDateTime.now().format(formattedDate) + "[" + testCode + "]" + ".class";
+        String directoryPath = System.getProperty("user.dir") + File.separator + "byteLog"; // 디렉토리 경로
+        String filePath = directoryPath + File.separator + fileName; // 최종 파일 경로
+
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs(); // 디렉토리가 없으면 생성
+        }
+
+        FileOutputStream out = new FileOutputStream(filePath); // 파일 출력 스트림 생성
+
+        out.write(bytecodes);
+        out.close();
+    }
+}

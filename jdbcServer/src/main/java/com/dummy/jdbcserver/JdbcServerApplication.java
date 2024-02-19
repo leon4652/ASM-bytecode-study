@@ -1,5 +1,6 @@
 package com.dummy.jdbcserver;
 
+import com.dummy.jdbcserver.example_asm.chap3.AddTimerAdapter;
 import com.dummy.jdbcserver.example_asm.chap3.BasicExample;
 import com.dummy.jdbcserver.example_asm.chap3.StatelessTransformationsExample;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,8 @@ public class JdbcServerApplication {
         BasicExample basicExample = new BasicExample();
         StatelessTransformationsExample statelessTransformationsExample = new StatelessTransformationsExample();
         statelessTransformationsExample.m();
+        AddTimerAdapter addTimerAdapter = new AddTimerAdapter();
+
         System.out.println("[End Of Main]");
 
 //        SpringApplication.run(JdbcServerApplication.class, args);
