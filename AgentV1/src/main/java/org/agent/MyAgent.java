@@ -1,29 +1,42 @@
 package org.agent;
 
-import org.agent.code.init.*;
-import org.agent.code.transform.CoreAPITransformer;
-import org.agent.code.transform.TreeAPITransformer;
+import lombok.extern.slf4j.Slf4j;
+import org.agent.classloader.MakeClassClassLoader;
+import org.agent.init.Banner;
+import org.agent.init.ConfigRead;
+import org.agent.transform.TreeAPITransformer;
 
 import java.lang.instrument.Instrumentation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 
+@Slf4j
 public class MyAgent {
-    public static boolean globalFlag; //다용도 flag
 
-    /**
-     *  premain 메서드는 Instrumentation 객체를 매개변수로 받는다.
-     * 이 객체는 JVM이 제공하는 인스트루멘테이션 기능에 접근할 수 있게 해준다.
-     */
     public static void premain(String agentArgs, Instrumentation instrumentation)  {
 
         Banner.send(agentArgs); //로그 찍기
         ConfigRead configRead = new ConfigRead(); //Config Read
         //CallThread.run(); JMX 쓰레드 생성 및 호출
 
+        //새로운 클래스를 생성하는 로직
+        try {
+            MakeClassClassLoader makeClassClassLoader = new MakeClassClassLoader();
+            Class<?> newClass = makeClassClassLoader.defineClass("test", true, true);
 
-        //Instrumentation 객체의 addTransformer를 통해 인터페이스 구현 클래스를 '등록'한다.
-        //premain은 유일하게 단 한번 실행. addTransformer를 통해 Transformer를 JVM의 Instrumentation에 등록했다.
-        //이 인터페이스의 구현체(transform)은 JVM이 존재하는 클래스를 로드할 때마다 호출되며, 이 시점에서 바이트코드를 조사하고 변경할 수 있다.
+            // 로드된 클래스로부터 생성자를 가져와 인스턴스 생성
+            Constructor<?> constructor = newClass.getDeclaredConstructor();
+            Object instance = constructor.newInstance();
+
+            //이 과정에서 생성된 .class는 동적 클래스로더만 호출 권한을 가짐.
+
+        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            log.warn("[PREMAIN]Constructor<?> constructor ERR {}", e.getMessage());
+            throw new RuntimeException(e);
+        }
+
         instrumentation.addTransformer(new TreeAPITransformer());
     }
 }
+

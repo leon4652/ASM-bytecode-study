@@ -3,7 +3,6 @@ package com.dummy.jdbcserver;
 import com.dummy.jdbcserver.example_asm.chap3.AddTimerAdapter;
 import com.dummy.jdbcserver.example_asm.chap3.BasicExample;
 import com.dummy.jdbcserver.example_asm.chap3.StatelessTransformationsExample;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -17,6 +16,7 @@ public class JdbcServerApplication {
         StatelessTransformationsExample statelessTransformationsExample = new StatelessTransformationsExample();
         statelessTransformationsExample.m();
         AddTimerAdapter addTimerAdapter = new AddTimerAdapter();
+
 
         System.out.println("[End Of Main]");
 
