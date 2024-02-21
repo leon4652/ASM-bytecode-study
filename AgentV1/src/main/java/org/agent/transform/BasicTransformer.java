@@ -36,16 +36,7 @@ public class BasicTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) {
-        //DataSource
-        if (className.contains("com/zaxxer/hikari/HikariDataSource")) {
-//            AsmCodeFactory.testCode = "DataSourceVisitor";
-            AsmCodeFactory.testCode = "HikariAdd";
-            return AsmCodeFactory.doMethod(classfileBuffer, true); //테스트 코드 실행
-        }
-        if (className.contains("PreparedStatement")) {
-            AsmCodeFactory.testCode = "PreparedStatementModifyVisitor";
-            return AsmCodeFactory.doMethod(classfileBuffer, true); //테스트 코드 실행
-        }
+        //여기에서 해당 class의 바이트코드 변조를 수행하자.
 
         return classfileBuffer;
     }

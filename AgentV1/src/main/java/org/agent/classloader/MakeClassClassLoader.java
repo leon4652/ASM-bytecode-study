@@ -1,8 +1,15 @@
 package org.agent.classloader;
 
 import lombok.extern.slf4j.Slf4j;
-import org.agent.util.CodePrinter;
+import org.agent.asm_core_api.testcode.chap03.AddTimerAdapter;
+import org.agent.asm_core_api.testcode.chap03.BasicExample;
+import org.agent.asm_core_api.testcode.chap03.SetF;
+import org.agent.asm_core_api.testcode.chap03.StatelessTransformationsExample;
+import org.agent.asm_core_api.testcode.chap1_2.*;
+import org.agent.asm_core_api.testcode.hikari.HikariAdd;
 import org.agent.asm_tree_api.VisitorAdapter;
+import org.agent.asm_tree_api.testcode.BasicClass;
+import org.agent.util.CodePrinter;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -28,37 +35,32 @@ import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 @Slf4j
 public class MakeClassClassLoader extends ClassLoader {
 
-
-    public Class<?> defineClass(String name, boolean isPrint, boolean autoCompute) {
-        //ClassWriter 생성
+    /**
+     *
+     * @param testcode : testcode 패키지 안 실행할 ClassNode명
+     * @param className : 만들어질 클래스 이름
+     * @param isPrint : 출력 유무
+     * @param autoCompute : 스택과 로컬 변수(visitMaxs) 자동 계산 유무
+     * @return
+     */
+    public Class<?> defineClass(String testcode, String className, boolean isPrint, boolean autoCompute) {
         ClassWriter classWriter;
-        if(autoCompute) {
+        if(autoCompute) { //stack frame 크기 자동 계산 유무
             classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
         } else {
-            classWriter = new ClassWriter(0); //스택과 로컬 변수(visitMaxs) 직접 계산
+            classWriter = new ClassWriter(0);
         }
 
         //ClassNode를 통한 변조 진행
         try {
-            ClassNode cn = VisitorAdapter.setClassNode(name); // name에 따른 ClassNode 생성
-            cn.accept(classWriter); //ClassNode의 정보를 ClassWriter에 적용하여 바이트코드로 변환(accept를 통해 writer가 확인)
 
-            //Hotfix : 생성자 추가, cn에서 추가가 안 되어서 임의로 추가하였음.
-            MethodVisitor mv = classWriter.visitMethod(Opcodes.ACC_PUBLIC, "<init>", "()V", null, null);
-            mv.visitVarInsn(Opcodes.ALOAD, 0); // this를 로드
-            mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false); // 슈퍼 클래스의 생성자 호출
-            //sysout
-            mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-            mv.visitLdcInsn("생성자 생성됨.");
-            mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
-
-            mv.visitInsn(Opcodes.RETURN);
-            mv.visitMaxs(0, 0);
-            mv.visitEnd();
+            //testcode를 통한 classNode 호출
+            ClassNode cn = setVisitor(testcode, className);
+            cn.accept(classWriter);
 
             if(isPrint) {
-                CodePrinter.printClass(classWriter.toByteArray(), name); //출력
-                log.warn("[Print]{} 코드 출력 완료", name);
+                CodePrinter.printClass(classWriter.toByteArray(), className); //출력
+                log.warn("[Print]{} 코드 출력 완료", className);
             }
         } catch (IOException e) {
             log.warn("doMethod ERR[IOException : PRINT] : {}", e.getMessage());
@@ -66,6 +68,16 @@ public class MakeClassClassLoader extends ClassLoader {
             log.warn("doMethod ERR : {}", e.getMessage());
         }
         byte[] bytecodes = classWriter.toByteArray(); //변경 사항(생성) 저장
-        return super.defineClass(name, bytecodes, 0, bytecodes.length);
+        return super.defineClass(className, bytecodes, 0, bytecodes.length);
+    }
+
+    public ClassNode setVisitor(String testcode, String className) {
+        switch (testcode) {
+            case "BasicClass" -> {
+                return BasicClass.getClassNode(className); //만약 이런 식으로 여기 있는 return을 호출하면, static이 포함된 class가 JVM에서 로드되나?
+            }
+
+            default -> throw new IllegalArgumentException("[Tree-Setvisitor]Unsupported method name: " + testcode);
+        }
     }
 }
