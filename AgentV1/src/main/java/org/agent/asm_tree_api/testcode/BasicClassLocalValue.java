@@ -6,6 +6,10 @@ import org.objectweb.asm.tree.*;
 import static org.objectweb.asm.Opcodes.*;
 import static org.objectweb.asm.Opcodes.ACC_ABSTRACT;
 
+/**
+ * 새로운 class 생성
+ * ClassNode에 생성자 및 메서드, 지역 변수 추가 예제
+ */
 public class BasicClassLocalValue {
     static private ClassNode cn = new ClassNode();
 

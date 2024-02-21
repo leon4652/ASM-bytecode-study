@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 @Slf4j
 public class MyAgent {
 
+    //런타임 전 정적 수행
     public static void premain(String agentArgs, Instrumentation instrumentation)  {
 
         Banner.send(agentArgs); //로그 찍기
@@ -38,6 +39,21 @@ public class MyAgent {
 
         instrumentation.addTransformer(new CoreAPITransformer());
 //        instrumentation.addTransformer(new TreeAPITransformer());
+    }
+
+    //런타임 이후 Agent 호출 시 동적 수행(Attached API 추가해야 함 .. 보류)
+    public static void agentMain(String agentArgs, Instrumentation instrumentation) {
+        System.out.println("AgentMain called");
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(10000); // 10초 대기
+                    System.out.println("Hi there from Agent every 10 seconds");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
 
