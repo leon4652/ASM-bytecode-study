@@ -5,6 +5,8 @@ import org.agent.classloader.TreeAPI_MakeClassLoader;
 import org.agent.init.Banner;
 import org.agent.init.ConfigRead;
 import org.agent.transform.BasicTransformer;
+import org.agent.transform.CoreAPITransformer;
+import org.agent.transform.TreeAPITransformer;
 
 import java.lang.instrument.Instrumentation;
 import java.lang.reflect.Constructor;
@@ -34,7 +36,8 @@ public class MyAgent {
             throw new RuntimeException(e);
         }
 
-        instrumentation.addTransformer(new BasicTransformer());
+        instrumentation.addTransformer(new CoreAPITransformer());
+//        instrumentation.addTransformer(new TreeAPITransformer());
     }
 }
 

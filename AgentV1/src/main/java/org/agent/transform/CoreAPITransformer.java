@@ -15,11 +15,11 @@ public class CoreAPITransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) {
         String containsName = "AddTimerAdapter"; //스캔할 Class네임 일부 입력
+        String testCode = "AddTimerAdapter"; //testcode package name
 
         if (className.contains(containsName)) {
-            log.warn("[TRANSFORM] Find ClassName : {}", containsName);
-            AsmCodeFactory.testCode = containsName; //이 Agent 파일에서 실행할 Class testcode 이름 입력(일반적으로 containsName과 동일함)
-            return AsmCodeFactory.doMethod(classfileBuffer, true); //테스트 코드 실행
+            log.warn("[CoreAPITransformer] Find ClassName : {}", containsName);
+            return AsmCodeFactory.doMethod(classfileBuffer, testCode,true); //테스트 코드 실행
         }
 
         return classfileBuffer;

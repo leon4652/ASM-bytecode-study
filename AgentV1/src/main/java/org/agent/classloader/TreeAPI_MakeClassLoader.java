@@ -40,18 +40,14 @@ public class TreeAPI_MakeClassLoader extends ClassLoader {
         } else {
             classWriter = new ClassWriter(0);
         }
-
         //2. ClassNode를 통한 변조 진행
-        try {
-            ClassNode cn = VisitorAdapter.setVisitor(testcode, className); //testcode를 통해 입력값에 맞는 classNode 호출
-            cn.accept(classWriter);
-            if(isPrint) {
-                CodePrinter.printClass(classWriter.toByteArray(), className); //출력
-                log.warn("[Print]{} 코드 출력 완료", className);
-            }
-        } catch (IOException e) {
-            log.warn("[defineClass][IOException : PRINT] : {}", e.getMessage());
+        ClassNode cn = VisitorAdapter.setVisitor(testcode, className); //testcode를 통해 입력값에 맞는 classNode 호출
+        cn.accept(classWriter);
+        if(isPrint) {
+            CodePrinter.printClass(classWriter.toByteArray(), className); //출력
+            log.warn("[Print]{} 코드 출력 완료", className);
         }
+
         byte[] bytecodes = classWriter.toByteArray(); //변경 사항(생성) 저장
         return super.defineClass(className, bytecodes, 0, bytecodes.length);
     }

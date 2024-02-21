@@ -51,6 +51,7 @@ public class BasicClassLocalValue {
 
         mnLocalValue.instructions = il; //메서드 지시사항 추가
         cn.methods.add(mnLocalValue); //메서드 추가
+
         return cn;
     }
 }
