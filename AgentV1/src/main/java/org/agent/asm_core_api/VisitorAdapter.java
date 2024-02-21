@@ -15,6 +15,7 @@ import static org.objectweb.asm.Opcodes.*;
  *  Class 명에 따른 ClassVisitor 생성
  *  testcode 내부의 visitor 구현체를 생성해서 return한다.
  *  이를 통해 원하는 변조 로직을 가진 구현체를 return할 수 있음.
+ *  Premain에서 Reflection 사용이 제한되므로, 대체적으로 생성하였음.
  * @param classWriter
  * @return classVisitor
  */

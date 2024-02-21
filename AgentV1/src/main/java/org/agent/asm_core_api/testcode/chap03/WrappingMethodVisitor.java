@@ -31,7 +31,6 @@ public class WrappingMethodVisitor extends ClassVisitor {
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
                 }
             };
-
         }
 
         // (B) 이렇게 할 경우 적용되지 않음

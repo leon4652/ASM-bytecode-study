@@ -1,7 +1,7 @@
 package org.agent;
 
 import lombok.extern.slf4j.Slf4j;
-import org.agent.classloader.MakeClassClassLoader;
+import org.agent.classloader.TreeAPI_MakeClassLoader;
 import org.agent.init.Banner;
 import org.agent.init.ConfigRead;
 import org.agent.transform.BasicTransformer;
@@ -22,8 +22,8 @@ public class MyAgent {
 
         //동적 클래스로드 사용하여 새로운 클래스 빌드
         try {
-            MakeClassClassLoader makeClassClassLoader = new MakeClassClassLoader();
-            Class<?> newClass = makeClassClassLoader.defineClass("BasicClass","test1", true, true);
+            TreeAPI_MakeClassLoader makeClassClassLoader = new TreeAPI_MakeClassLoader();
+            Class<?> newClass = makeClassClassLoader.defineClass("BasicClassLocalValue","testLocalClass", true, true);
 
             // 로드된 클래스로부터 생성자를 가져와 인스턴스 생성
             Constructor<?> constructor = newClass.getDeclaredConstructor();
