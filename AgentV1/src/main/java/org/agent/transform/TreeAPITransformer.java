@@ -1,10 +1,8 @@
 package org.agent.transform;
 
 import lombok.extern.slf4j.Slf4j;
-import org.agent.asm_core_api.AsmCodeFactory;
-import org.agent.asm_tree_api.testcode.BasicClass;
-import org.agent.asm_tree_api.testcode.BasicRemoveField;
-import org.agent.asm_tree_api.testcode.BasicRemoveMethod;
+import org.agent.asm_tree_api.testcode.TransformerExample;
+import org.agent.asm_tree_api.testcode.insnlist.BasicModify;
 import org.agent.util.CodePrinter;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -25,7 +23,7 @@ public class TreeAPITransformer implements ClassFileTransformer {
 
         if (className.contains(containsName)) {
             log.warn("[TRANSFORM] Find ClassName : {}", containsName);
-            byte[] modifiedCode = init(classfileBuffer); //here to modify
+            byte[] modifiedCode = init(classfileBuffer); //this method 'init' set modify
             CodePrinter.printClass(modifiedCode, containsName); //print
             return modifiedCode;
         } else {
@@ -34,13 +32,18 @@ public class TreeAPITransformer implements ClassFileTransformer {
 
     }
 
-    public byte[] init(byte[] bytes) {
-        ClassReader classReader = new ClassReader(bytes);
+    public byte[] init(byte[] classfileBuffer) {
+        ClassReader classReader = new ClassReader(classfileBuffer);
         ClassNode cn = new ClassNode();
         classReader.accept(cn, 0); //바이트코드 제공
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
-        cn = BasicRemoveMethod.removeMethod(cn, "main", "()V"); //<< ClassNode testcode 적용점
-        cn = BasicRemoveField.removeField(cn, "staticVal"); //<< ClassNode testcode 적용점
+
+//        cn = BasicRemoveMethod.removeMethod(cn, "main", "()V"); //<< ClassNode testcode 적용점
+//        cn = BasicRemoveField.removeField(cn, "staticVal"); //<< ClassNode testcode 적용점
+//        new TransformerExample(cn).run(); //Chaining Example
+        BasicModify.ModifyMethodName(cn, "main", "V", "modifyMain");
+        BasicModify.ModifyFieldName(cn, "vFive", "vFiveModify");
+
         cn.accept(cw); //변조된 classNode 바이트코드 제공
         return cw.toByteArray();
     }

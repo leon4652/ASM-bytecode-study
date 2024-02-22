@@ -30,6 +30,7 @@ public class CodePrinter {
 
             out.write(bytecodes);
             out.close();
+            log.warn("[CODE_PRINTER_DONE] byteLog print done. : " + testCode);
         } catch (IOException e) {
             log.warn("[CODE_PRINTER ERR] : {}", e.getMessage());
         }

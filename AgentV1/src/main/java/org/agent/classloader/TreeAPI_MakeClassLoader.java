@@ -2,12 +2,9 @@ package org.agent.classloader;
 
 import lombok.extern.slf4j.Slf4j;
 import org.agent.asm_tree_api.VisitorAdapter;
-import org.agent.asm_tree_api.testcode.BasicClass;
 import org.agent.util.CodePrinter;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
-
-import java.io.IOException;
 
 
 /**

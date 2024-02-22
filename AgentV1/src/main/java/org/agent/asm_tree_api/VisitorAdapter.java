@@ -1,6 +1,7 @@
 package org.agent.asm_tree_api;
 
-import org.agent.asm_tree_api.testcode.*;
+import org.agent.asm_tree_api.testcode.insnlist.BasicClass;
+import org.agent.asm_tree_api.testcode.insnlist.BasicClassLocalValue;
 import org.objectweb.asm.tree.*;
 
 /**

@@ -37,8 +37,9 @@ public class MyAgent {
             throw new RuntimeException(e);
         }
 
-        instrumentation.addTransformer(new CoreAPITransformer());
-//        instrumentation.addTransformer(new TreeAPITransformer());
+        //시스템 클래스로더 순회
+//        instrumentation.addTransformer(new CoreAPITransformer());
+        instrumentation.addTransformer(new TreeAPITransformer());
     }
 
     //런타임 이후 Agent 호출 시 동적 수행(Attached API 추가해야 함 .. 보류)
