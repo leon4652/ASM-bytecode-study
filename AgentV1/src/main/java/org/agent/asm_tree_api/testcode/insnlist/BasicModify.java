@@ -13,13 +13,12 @@ import java.util.*;
 public class BasicModify {
 
     //메서드 이름 변경
-    public static ClassNode ModifyMethodName(ClassNode cn, String methodName, String methodDesc, String modifyName) {
+    public static void ModifyMethodName(ClassNode cn, String methodName, String methodDesc, String modifyName) {
         Iterator<MethodNode> iterator = cn.methods.iterator();
         MethodNode modifiedMethod = null;
         boolean modified = false;
         while (iterator.hasNext()) {
             MethodNode mn = iterator.next(); //MethodNode
-            System.out.println(mn.name);
 
             if(methodName.equals(mn.name) && methodDesc.equals(mn.desc)) {
                 modified = true;
@@ -33,8 +32,6 @@ public class BasicModify {
             modifiedMethod.name = modifyName; //변경
             cn.methods.add(modifiedMethod);
         }
-
-        return cn;
     }
 
     public static void ModifyFieldName(ClassNode cn, String fieldName, String modifyName) {

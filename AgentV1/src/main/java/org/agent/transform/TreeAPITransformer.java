@@ -1,8 +1,7 @@
 package org.agent.transform;
 
 import lombok.extern.slf4j.Slf4j;
-import org.agent.asm_tree_api.testcode.TransformerExample;
-import org.agent.asm_tree_api.testcode.insnlist.BasicModify;
+import org.agent.asm_tree_api.testcode.control_statement.IfExampleTree;
 import org.agent.util.CodePrinter;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -38,11 +37,13 @@ public class TreeAPITransformer implements ClassFileTransformer {
         classReader.accept(cn, 0); //바이트코드 제공
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
 
+        //바이트코드 변조 로직 적용
 //        cn = BasicRemoveMethod.removeMethod(cn, "main", "()V"); //<< ClassNode testcode 적용점
 //        cn = BasicRemoveField.removeField(cn, "staticVal"); //<< ClassNode testcode 적용점
 //        new TransformerExample(cn).run(); //Chaining Example
-        BasicModify.ModifyMethodName(cn, "main", "V", "modifyMain");
-        BasicModify.ModifyFieldName(cn, "vFive", "vFiveModify");
+//        BasicModify.ModifyMethodName(cn, "main", "()V", "modifyMain");
+//        BasicModify.ModifyFieldName(cn, "vSix", "vFiveModify");
+        IfExampleTree.run(cn);
 
         cn.accept(cw); //변조된 classNode 바이트코드 제공
         return cw.toByteArray();
