@@ -10,12 +10,12 @@ import static org.objectweb.asm.Opcodes.*;
  *
  * BasicExample Class에 for문 메서드 추가하기
 
- void ifMethod(int var1) {
-    int localVal;
-    if(var1 > 0) {
-    localVal = 100;
- } else localVal = -100;
- sysout(localVal);
+ public void ifMethod(int var1) {
+ if (var1 < 0) {
+ System.out.println("true");
+ } else {
+ System.out.println("false");
+ }
  }
 
  */
@@ -39,7 +39,6 @@ public class IfExampleTree {
         il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;")); // System.out 객체를 스택에 푸시
         il.add(new LdcInsnNode("true")); // "true" 문자열을 스택에 푸시
         il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false)); // println 메소드 호출
-
 
 
         //else에 가지 않도록 end로 jump 처리

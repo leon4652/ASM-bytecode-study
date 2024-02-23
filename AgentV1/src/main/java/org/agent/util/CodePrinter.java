@@ -14,7 +14,7 @@ public class CodePrinter {
     /**
      * 바이트코드 조작 후 Class 파일 출력 로직
      */
-    public static void printClass(byte[] bytecodes, String testCode) {
+    public static void printClass(byte[] bytecodes, String testCode, boolean deleteLastFile) {
         try {
             DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
             String fileName = LocalDateTime.now().format(formattedDate) + "[" + testCode + "]" + ".class";
@@ -24,7 +24,16 @@ public class CodePrinter {
             File directory = new File(directoryPath);
             if (!directory.exists()) {
                 directory.mkdirs(); // 디렉토리가 없으면 생성
+            } else if(deleteLastFile) { // deleteLastFile이 true일 경우, 디렉토리 내 모든 파일 삭제
+                File[] files = directory.listFiles();
+                if (files != null) {
+                    for (File file : files) {
+                        file.delete(); // 파일 삭제
+                    }
+                }
             }
+
+
 
             FileOutputStream out = new FileOutputStream(filePath); // 파일 출력 스트림 생성
 

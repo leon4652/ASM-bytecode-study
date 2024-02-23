@@ -41,7 +41,7 @@ public class TreeAPI_MakeClassLoader extends ClassLoader {
         ClassNode cn = VisitorAdapter.setVisitor(testcode, className); //testcode를 통해 입력값에 맞는 classNode 호출
         cn.accept(classWriter);
         if(isPrint) {
-            CodePrinter.printClass(classWriter.toByteArray(), className); //출력
+            CodePrinter.printClass(classWriter.toByteArray(), className, true); //출력
             log.warn("[Print]{} 코드 출력 완료", className);
         }
 

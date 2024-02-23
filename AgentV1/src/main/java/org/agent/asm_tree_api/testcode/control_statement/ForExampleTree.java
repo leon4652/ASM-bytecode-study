@@ -1,65 +1,65 @@
 package org.agent.asm_tree_api.testcode.control_statement;
 
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
+import org.objectweb.asm.util.TraceClassVisitor;
 
 import static org.objectweb.asm.Opcodes.*;
 
 /**
- * 해당 클래스는 Instrument Transformer 구현체로 사용할 것.
- * TreeAPITransformer
- *
- * BasicExample Class에 for문 메서드 추가하기
-
- void ifMethod(int var1) {
-    int localVal;
-    if(var1 > 0) {
-    localVal = 100;
- } else localVal = -100;
- sysout(localVal);
- }
-
+for문 구현
  */
 public class ForExampleTree {
     public static void run(ClassNode cn) {
-        //1. MethodNode 설정 및 지시문 List, Label, 지역변수
-        MethodNode mn = new MethodNode();
-        mn.name = "ifMethod";
-        mn.desc = "(I)V";
-        mn.access = ACC_PUBLIC;
+
+        MethodNode mn = new MethodNode(ACC_PROTECTED, "forMethod", "(I)V", null, null);
         InsnList il = new InsnList();
-        LabelNode elseLabel = new LabelNode(); //if문
-        LabelNode endLabel = new LabelNode();
 
-        //if문 체크
+        //label 목록
+        LabelNode forStart = new LabelNode(); //label
+        LabelNode forEnd = new LabelNode();
+        LabelNode localStart = new LabelNode(); //localA
+        LabelNode localEnd = new LabelNode();
 
-        il.add(new VarInsnNode(ILOAD, 1)); //지역변수 idx1 : 입력파라미터 = 스택에 저장
-        il.add(new JumpInsnNode(IFGE, elseLabel)); //if문 비교에 사용
-        //if-true
-        // "true" 출력
+        //지역변수들 목록
+        mn.localVariables.add(new LocalVariableNode("localA", "I", null, localStart, localEnd, 2));
+        mn.localVariables.add(new LocalVariableNode("i", "I", null, forStart, forEnd, 3)); //for문 내부 I 생성
+
+        //+=====세부 로직=====+
+        il.add(localStart);//local start
+
+        //1. method 지역변수(idx 2) 추가. 0 = this, 1 = inputParam
+        il.add(new VarInsnNode(ILOAD, 1));//stack에 입력 파라미터(idx1) 대입
+        il.add(new LdcInsnNode(1));//stack에 상수 1 대입
+        il.add(new InsnNode(IADD)); //두 상수를 더하기
+        il.add(new VarInsnNode(ISTORE, 2)); //localA 변수에 더한 상수 대입
+
+        //2. for문
+        il.add(new LdcInsnNode(0)); //Stack에 0 저장
+        il.add(new VarInsnNode(ISTORE, 3)); //지역변수 I에 0 대입
+        il.add(forStart); //for 시작
+        //for 내부 구문 비교 (for(int i = 0;i < localA; i++)
+        //I값이랑 localA값 비교 조건
+        il.add(new VarInsnNode(ILOAD, 3)); //i 로드
+        il.add(new VarInsnNode(ILOAD, 2)); //localA 로드
+        il.add(new JumpInsnNode(IF_ICMPGE, forEnd)); //로드한 값 비교하여 클 경우 forEnd로 이동
+
+        //sysout
         il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;")); // System.out 객체를 스택에 푸시
-        il.add(new LdcInsnNode("true")); // "true" 문자열을 스택에 푸시
-        il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false)); // println 메소드 호출
+        il.add(new VarInsnNode(ILOAD, 2));
+        il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(I)V", false)); // println 메소드 호출
 
+        //i++
+        il.add(new IincInsnNode(3, 1)); // i 값을 1 증가시킴
 
+        il.add(new JumpInsnNode(GOTO, forStart)); //반복 시행
+        il.add(forEnd);   //for 루프 종료
+        il.add(localEnd); //local End
 
-        //else에 가지 않도록 end로 jump 처리
-        il.add(new JumpInsnNode(GOTO, endLabel));
-        //else 위치
-        il.add(elseLabel);
-        // "false" 출력
-        il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;")); // System.out 객체를 스택에 푸시
-        il.add(new LdcInsnNode("false")); // "false" 문자열을 스택에 푸시
-        il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false)); // println 메소드 호출
-
-
-        //end 위치 - if문 끝
-        il.add(endLabel);
-
-        il.add(new InsnNode(RETURN));
-
+        //return
+        il.add(new InsnNode(RETURN)); //return;
         mn.instructions.add(il);
-//        mn.maxStack = 3; frame 계산 생략(Compute_max 사용)
-//        mn.maxLocals = 2;
         cn.methods.add(mn);
+
     }
 }

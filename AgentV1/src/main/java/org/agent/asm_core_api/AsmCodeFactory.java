@@ -21,7 +21,7 @@ public class AsmCodeFactory {
         ClassVisitor classVisitor = VisitorAdapter.setVisitor(classWriter, testCode); // testClass 명에 따른 ClassVisitor 생성
         classReader.accept(classVisitor, 0); //ClassVisitor 에게 정보 부여
         if (isPrint) {
-            CodePrinter.printClass(classWriter.toByteArray(), testCode); //출력
+            CodePrinter.printClass(classWriter.toByteArray(), testCode, true); //출력
             log.warn("[Print]{} 코드 출력 완료", testCode);
         }
 

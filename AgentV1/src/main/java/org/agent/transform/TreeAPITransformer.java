@@ -1,12 +1,14 @@
 package org.agent.transform;
 
 import lombok.extern.slf4j.Slf4j;
+import org.agent.asm_tree_api.testcode.control_statement.ForExampleTree;
 import org.agent.asm_tree_api.testcode.control_statement.IfExampleTree;
 import org.agent.util.CodePrinter;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 
+import java.io.PrintWriter;
 import java.lang.instrument.ClassFileTransformer;
 import java.security.ProtectionDomain;
 
@@ -23,7 +25,7 @@ public class TreeAPITransformer implements ClassFileTransformer {
         if (className.contains(containsName)) {
             log.warn("[TRANSFORM] Find ClassName : {}", containsName);
             byte[] modifiedCode = init(classfileBuffer); //this method 'init' set modify
-            CodePrinter.printClass(modifiedCode, containsName); //print
+            CodePrinter.printClass(modifiedCode, containsName, true); //print
             return modifiedCode;
         } else {
             return classfileBuffer;
@@ -43,9 +45,8 @@ public class TreeAPITransformer implements ClassFileTransformer {
 //        new TransformerExample(cn).run(); //Chaining Example
 //        BasicModify.ModifyMethodName(cn, "main", "()V", "modifyMain");
 //        BasicModify.ModifyFieldName(cn, "vSix", "vFiveModify");
-        IfExampleTree.run(cn);
+        ForExampleTree.run(cn);
 
-        cn.accept(cw); //변조된 classNode 바이트코드 제공
         return cw.toByteArray();
     }
 }
