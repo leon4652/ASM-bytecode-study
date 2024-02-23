@@ -4,6 +4,7 @@ import com.dummy.jdbcserver.example_asm.chap3.AddTimerAdapter;
 import com.dummy.jdbcserver.example_asm.chap3.BasicExample;
 import com.dummy.jdbcserver.example_asm.chap3.GetFSetF;
 import com.dummy.jdbcserver.example_asm.chap3.StatelessTransformationsExample;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -24,7 +25,7 @@ public class JdbcServerApplication {
 
         System.out.println("[End Of Main]");
 
-//        SpringApplication.run(JdbcServerApplication.class, args);
+        SpringApplication.run(JdbcServerApplication.class, args);
     }
 
 

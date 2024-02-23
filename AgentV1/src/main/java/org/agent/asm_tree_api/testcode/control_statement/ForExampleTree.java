@@ -1,9 +1,6 @@
 package org.agent.asm_tree_api.testcode.control_statement;
 
-import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
-import org.objectweb.asm.util.TraceClassVisitor;
-
 import static org.objectweb.asm.Opcodes.*;
 
 /**

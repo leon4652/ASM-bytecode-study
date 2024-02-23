@@ -6,6 +6,7 @@ import org.agent.init.Banner;
 import org.agent.init.ConfigRead;
 import org.agent.transform.BasicTransformer;
 import org.agent.transform.CoreAPITransformer;
+import org.agent.transform.FindHikariCPTransformer;
 import org.agent.transform.TreeAPITransformer;
 
 import java.lang.instrument.Instrumentation;
@@ -38,8 +39,7 @@ public class MyAgent {
 //        }
 
         //변조 : 시스템 클래스로더 순회
-//        instrumentation.addTransformer(new CoreAPITransformer());
-        instrumentation.addTransformer(new TreeAPITransformer());
+        instrumentation.addTransformer(new FindHikariCPTransformer());
     }
 
     //런타임 이후 Agent 호출 시 동적 수행(Attached API 추가해야 함 .. 보류)
