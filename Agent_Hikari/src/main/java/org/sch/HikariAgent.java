@@ -9,5 +9,6 @@ import java.lang.instrument.Instrumentation;
 public class HikariAgent {
     public static void premain(String agentArgs, Instrumentation instrumentation) {
         Banner.send(agentArgs); //로그 찍기
+        instrumentation.addTransformer(new ExampleClassTransformer());
     }
 }
