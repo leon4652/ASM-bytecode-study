@@ -34,7 +34,6 @@ dependencies {
 
 	//add libs files for agent
 	implementation fileTree(dir: 'libs', includes: ['*.jar'])
-	//implementation files('libs/AgentV1_0201-1.0-SNAPSHOT.jar')
 }
 
 tasks.named('test') {

@@ -4,6 +4,7 @@ import com.dummy.jdbcserver.example_asm.chap3.AddTimerAdapter;
 import com.dummy.jdbcserver.example_asm.chap3.BasicExample;
 import com.dummy.jdbcserver.example_asm.chap3.GetFSetF;
 import com.dummy.jdbcserver.example_asm.chap3.StatelessTransformationsExample;
+import com.dummy.jdbcserver.example_asm.testClass;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -22,6 +23,7 @@ public class JdbcServerApplication {
         AddTimerAdapter addTimerAdapter = new AddTimerAdapter();
         GetFSetF getFSetF = new GetFSetF();
 
+        testClass testClass = new testClass();
 
         System.out.println("[End Of Main]");
 
