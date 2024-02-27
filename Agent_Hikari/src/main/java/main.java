@@ -1,16 +1,12 @@
-import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
-import org.sch.asm_tree_api.AddLogger;
+import org.sch.asm_tree_api.code.AddLogger;
 import org.sch.util.CodePrinter;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static org.objectweb.asm.Opcodes.ACC_PRIVATE;
-import static org.objectweb.asm.Opcodes.V21;
 
 
 public class main {
