@@ -14,9 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 public class SQLSchecdular {
 
-    //end Timer
-    static int endTimer = 0;
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 15000)
     public void autoLog() throws Exception {
         String apiUrl = "http://localhost:8080/sql/random";
 
@@ -31,11 +29,6 @@ public class SQLSchecdular {
                 .subscribe(response -> {
                     log.info("Received response: {}", response);
                 });
-
-        if(endTimer == 5) {
-            log.warn("타이머로 인한 종료");
-            throw new Exception();
-        } else endTimer++;
     }
 
 }
