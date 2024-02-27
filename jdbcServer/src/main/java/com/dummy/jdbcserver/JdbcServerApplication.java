@@ -5,6 +5,7 @@ import com.dummy.jdbcserver.example_asm.chap3.BasicExample;
 import com.dummy.jdbcserver.example_asm.chap3.GetFSetF;
 import com.dummy.jdbcserver.example_asm.chap3.StatelessTransformationsExample;
 import com.dummy.jdbcserver.example_asm.testClass;
+import com.zaxxer.hikari.pool.HikariProxyPreparedStatement;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -14,21 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class JdbcServerApplication {
 
     public static void main(String[] args) throws Exception {
-
-
-        // 가장 먼저 Load되는 main 내부에 Scan할 수 있도록 객체 생성
-        BasicExample basicExample = new BasicExample();
-        StatelessTransformationsExample statelessTransformationsExample = new StatelessTransformationsExample();
-        statelessTransformationsExample.m();
-        AddTimerAdapter addTimerAdapter = new AddTimerAdapter();
-        GetFSetF getFSetF = new GetFSetF();
-
-        testClass testClass = new testClass();
-
-        System.out.println("[End Of Main]");
-
-        SpringApplication.run(JdbcServerApplication.class, args);
+        HikariProxyPreparedStatement hikariProxyPreparedStatement; //1. 여기서 클래스를 호출하면, 시스템 클래스로더는 먼저 이 클래스를 호출한다(B)
+        SpringApplication.run(JdbcServerApplication.class, args); //2. 여기에서 tomcat이 빌드되니, 1번에서 먼저 변조하고자 하는 클래스를 호출한다.
     }
-
-
 }

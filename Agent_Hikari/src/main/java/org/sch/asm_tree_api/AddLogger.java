@@ -30,7 +30,7 @@ public class AddLogger {
                 il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false));
 
                 System.out.println("로그 추가 : " + methodNode.name);
-                methodNode.instructions.add(il);
+                methodNode.instructions.insert(il); //return보다 앞서서 메서드 맨 위에 지시문 추가.
             }
         }
     }
