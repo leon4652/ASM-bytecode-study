@@ -13,13 +13,19 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Slf4j
 @RequiredArgsConstructor
 public class SQLSchecdular {
-
-    @Scheduled(fixedRate = 1000)
+    int count = 0;
+    boolean useRepeat = false;
+    @Scheduled(fixedRate = 5000)
     public void autoLog() throws Exception {
-        String apiUrl = "http://localhost:8080/sql/random";
+        if (!useRepeat) return;
+
+        String[] apiUrl = {
+                "http://localhost:8080/sql/random"
+//                ,"http://localhost:8080/sql/get-list"
+        };
 
         WebClient webClient = WebClient.builder()
-                .baseUrl(apiUrl)
+                .baseUrl(apiUrl[count++ % apiUrl.length])
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
 
