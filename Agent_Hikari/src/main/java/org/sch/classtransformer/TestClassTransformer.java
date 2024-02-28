@@ -6,8 +6,6 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 import org.sch.HikariAgent;
 import org.sch.asm_tree_api.ClassNodeTransformationStrategy;
-import org.sch.asm_tree_api.code.AddAdditionalObjectToMain;
-import org.sch.asm_tree_api.code.AddLogger;
 import org.sch.asm_tree_api.code.CheckSpringApplicationAnnotation;
 import org.sch.util.CodePrinter;
 
@@ -36,12 +34,15 @@ public class TestClassTransformer implements ClassFileTransformer {
         //2. 1에서 forName을 읽는 순간, 이 로직이 발동할 것이다. 이 로직은 'HikariProxyPreparedStatement'의 변조를 수행한다. 즉, main이 로드 된 이후 바로 이 로직을 통해 변조된 HikariProxyPreparedStatement가 로드된다.
         if(className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement")) {
             int cnt = 1; while (cnt-- > 0) log.info("HIKARI CALL : " + loader.toString() + " " + className);
-            return BuildClassNode(classfileBuffer, "AddLogger");
+            return BuildClassNode(classfileBuffer, "AddLoggerPSTMT");
         }
         //3. Connection Test
-        if(className.equals("com/zaxxer/hikari/pool/HikariProxyConnection")) {
+//        if(className.equals("com/zaxxer/hikari/pool/HikariProxyConnection") ||
+        if(
+                className.equals("com/zaxxer/hikari/pool/HikariProxyResultSet") ||
+                className.equals("com/zaxxer/hikari/pool/HikariProxyStatement")) {
             int cnt = 1; while (cnt-- > 0) log.info("HIKARI_CONNECTION CALL : " + loader.toString() + " " + className);
-            return BuildClassNode(classfileBuffer, "AddLoggerTemp");
+            return BuildClassNode(classfileBuffer, "AddLoggerConn");
         }
 
         if(className.contains("SpringApplication")) {
