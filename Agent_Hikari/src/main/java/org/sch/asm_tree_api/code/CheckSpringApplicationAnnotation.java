@@ -26,30 +26,3 @@ public class CheckSpringApplicationAnnotation {
         return false; //결과값 출력
     }
 }
-
-///**
-// * Tree API : Class Annotation Check
-// */
-//class CheckAnnotationVisitor extends ClassVisitor {
-//    public CheckAnnotationVisitor() {
-//        super(Opcodes.ASM9);
-//    }
-//
-//    //각 메서드 방문시 호출
-//    @Override
-//    public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-//        MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
-//        System.out.println("method : " + name);
-//        return mv; // 변형된 MethodVisitor 반환
-//    }
-//
-//    @Override
-//    public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
-//        if (desc.equals("Lorg/springframework/boot/autoconfigure/SpringBootApplication;")) {
-//            CheckSpringApplicationAnnotation.haveAnnotation = true; //발견
-//            super.visitEnd(); //더 이상 순회할 필요 없으니 종료
-//        }
-//        return super.visitAnnotation(desc, visible);
-//    }
-//
-//}

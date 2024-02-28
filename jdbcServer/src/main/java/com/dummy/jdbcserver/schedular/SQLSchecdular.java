@@ -14,7 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 public class SQLSchecdular {
 
-    @Scheduled(fixedRate = 15000)
+    @Scheduled(fixedRate = 1000)
     public void autoLog() throws Exception {
         String apiUrl = "http://localhost:8080/sql/random";
 

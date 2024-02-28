@@ -1,8 +1,7 @@
 package org.sch.asm_tree_api;
 
 import org.objectweb.asm.tree.ClassNode;
-import org.sch.asm_tree_api.code.AddAdditionalObjectToMain;
-import org.sch.asm_tree_api.code.AddLogger;
+import org.sch.asm_tree_api.code.*;
 
 /**
  Code에 따른 ClassNode 변경 로직을 적용한다.
@@ -15,7 +14,10 @@ public class ClassNodeTransformationStrategy {
                 AddAdditionalObjectToMain.apply(cn);
             }
             case "AddLogger" -> {
-                new AddLogger(cn);
+                AddLogger.apply(cn);
+            }
+            case "AddLoggerTemp" -> {
+                AddLoggerTemp.apply(cn);
             }
             default -> throw new IllegalArgumentException("Unsupported name: " + code);
         }

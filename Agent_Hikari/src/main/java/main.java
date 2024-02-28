@@ -10,24 +10,9 @@ import static org.objectweb.asm.Opcodes.ACC_PRIVATE;
 
 
 public class main {
+    //컴파일하지 않고 직접 만드는 테스팅보드
     public static void main(String[] args) throws IOException {
-        // 클래스 파일 읽기
-        try {
-
-            ClassNode cn = new ClassNode();
-            cn.name = "TEST";
-            cn.methods.add(new MethodNode(ACC_PRIVATE, "executeTest", "(I)V", null,null));
-
-        AddLogger addLogger = new AddLogger(cn);
-
-            ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
-            cn.accept(cw);
-
-
-            byte[] modified = cw.toByteArray();
-            CodePrinter.printClass(modified, "test", true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+   
+      
     }
 }
