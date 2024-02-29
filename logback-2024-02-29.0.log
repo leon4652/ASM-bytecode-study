@@ -1,0 +1,218 @@
+09:07:05.436 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication
+09:07:05.440 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$AbandonedRunException
+09:07:05.445 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationShutdownHook
+09:07:05.446 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationShutdownHandlers
+09:07:05.447 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationShutdownHook$Handlers
+09:07:05.447 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationShutdownHook$ApplicationContextClosedListener
+09:07:05.494 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/context/event/SpringApplicationEvent
+09:07:05.499 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$Startup
+09:07:05.499 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$CoordinatedRestoreAtCheckpointStartup
+09:07:05.500 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$StandardStartup
+09:07:05.505 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationRunListener
+09:07:05.507 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationRunListeners
+09:07:05.728 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationBannerPrinter
+09:07:05.729 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationBannerPrinter$PrintedBanner
+09:07:05.771 INFO  c.d.jdbcserver.JdbcServerApplication - Starting JdbcServerApplication using Java 21.0.2 with PID 13564 (C:\Users\Sysone\IdeaProjects\jdbcServer\build\classes\java\main started by Sysone in C:\Users\Sysone\IdeaProjects\jdbcServer)
+09:07:05.772 INFO  c.d.jdbcserver.JdbcServerApplication - No active profile set, falling back to 1 default profile: "default"
+09:07:05.772 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$PropertySourceOrderingBeanFactoryPostProcessor
+09:07:06.200 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/admin/SpringApplicationAdminMXBeanRegistrar
+09:07:06.200 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/autoconfigure/admin/SpringApplicationAdminJmxAutoConfiguration
+09:07:06.242 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:07:06.422 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 173 ms. Found 1 JPA repository interface.
+09:07:06.808 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:07:06.824 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:07:06.826 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:07:06.826 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+09:07:06.879 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:07:06.879 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1081 ms
+09:07:07.020 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:07:07.080 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:07:07.114 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:07:07.347 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:07:07.371 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:07:07.707 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7976e536
+09:07:07.708 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:07:07.709 INFO  o.s.c.TestClassTransformer - HIKARI_CONNECTION CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyConnection
+09:07:07.733 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:07:07.765 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:07:07.766 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:07:08.434 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:07:08.469 INFO  o.s.c.TestClassTransformer - HIKARI_CONNECTION CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyResultSet
+09:07:08.478 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:07:08.488 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:07:08.699 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:07:09.072 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:07:09.247 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/admin/SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin
+09:07:09.248 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/admin/SpringApplicationAdminMXBean
+09:07:09.335 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:07:09.346 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:07:09.358 INFO  c.d.jdbcserver.JdbcServerApplication - Started JdbcServerApplication in 3.857 seconds (process running for 4.399)
+09:07:09.359 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$FactoryAwareOrderSourceProvider
+09:07:21.539 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:07:21.540 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:07:21.545 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:08:55.565 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication
+09:08:55.569 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$AbandonedRunException
+09:08:55.574 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationShutdownHook
+09:08:55.574 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationShutdownHandlers
+09:08:55.575 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationShutdownHook$Handlers
+09:08:55.575 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationShutdownHook$ApplicationContextClosedListener
+09:08:55.616 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/context/event/SpringApplicationEvent
+09:08:55.619 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$Startup
+09:08:55.619 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$CoordinatedRestoreAtCheckpointStartup
+09:08:55.619 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$StandardStartup
+09:08:55.621 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationRunListener
+09:08:55.624 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationRunListeners
+09:08:55.837 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationBannerPrinter
+09:08:55.840 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplicationBannerPrinter$PrintedBanner
+09:08:55.880 INFO  c.d.jdbcserver.JdbcServerApplication - Starting JdbcServerApplication using Java 21.0.2 with PID 9252 (C:\Users\Sysone\IdeaProjects\jdbcServer\build\classes\java\main started by Sysone in C:\Users\Sysone\IdeaProjects\jdbcServer)
+09:08:55.881 INFO  c.d.jdbcserver.JdbcServerApplication - No active profile set, falling back to 1 default profile: "default"
+09:08:55.881 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$PropertySourceOrderingBeanFactoryPostProcessor
+09:08:56.289 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/admin/SpringApplicationAdminMXBeanRegistrar
+09:08:56.289 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/autoconfigure/admin/SpringApplicationAdminJmxAutoConfiguration
+09:08:56.323 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:08:56.414 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 87 ms. Found 1 JPA repository interface.
+09:08:56.747 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:08:56.753 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:08:56.754 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:08:56.754 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+09:08:56.792 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:08:56.792 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 879 ms
+09:08:56.894 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:08:56.927 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:08:56.946 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:08:57.109 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:08:57.126 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:08:57.349 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@45311a99
+09:08:57.350 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:08:57.351 INFO  o.s.c.TestClassTransformer - HIKARI_CONNECTION CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyConnection
+09:08:57.377 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:08:57.406 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:08:57.406 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:08:57.942 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:08:57.971 INFO  o.s.c.TestClassTransformer - HIKARI_CONNECTION CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyResultSet
+09:08:57.979 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:08:57.989 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:08:58.141 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:08:58.446 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:08:58.586 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/admin/SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin
+09:08:58.586 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/admin/SpringApplicationAdminMXBean
+09:08:58.665 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:08:58.678 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:08:58.683 INFO  c.d.jdbcserver.JdbcServerApplication - Started JdbcServerApplication in 3.064 seconds (process running for 3.554)
+09:08:58.684 INFO  o.s.c.TestClassTransformer - SPRING CALL : jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c org/springframework/boot/SpringApplication$FactoryAwareOrderSourceProvider
+09:09:36.948 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:09:36.949 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:09:36.953 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:10:02.814 INFO  o.s.c.TestClassTransformer - [CheckSpringApplicationAnnotation]@SpringBootApplication 확인 : com/dummy/jdbcserver/JdbcServerApplication
+09:10:02.825 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddAdditionalObjectToMain
+09:10:02.836 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:10:03.132 INFO  c.d.jdbcserver.JdbcServerApplication - Starting JdbcServerApplication using Java 21.0.2 with PID 6816 (C:\Users\Sysone\IdeaProjects\jdbcServer\build\classes\java\main started by Sysone in C:\Users\Sysone\IdeaProjects\jdbcServer)
+09:10:03.133 INFO  c.d.jdbcserver.JdbcServerApplication - No active profile set, falling back to 1 default profile: "default"
+09:10:03.533 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:10:03.621 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 84 ms. Found 1 JPA repository interface.
+09:10:03.941 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:10:03.948 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:10:03.949 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:10:03.949 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+09:10:03.988 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:10:03.988 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 831 ms
+09:10:04.082 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:10:04.120 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:10:04.140 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:10:04.298 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:10:04.318 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:10:04.547 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5e2975ca
+09:10:04.548 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:10:04.552 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:10:04.582 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:10:04.583 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:10:05.113 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:10:05.149 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:10:05.159 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:10:05.322 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:10:05.611 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:10:05.840 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:10:05.853 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:10:05.859 INFO  c.d.jdbcserver.JdbcServerApplication - Started JdbcServerApplication in 2.969 seconds (process running for 3.505)
+09:11:52.542 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+09:11:52.542 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+09:11:52.542 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+09:33:40.182 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:33:40.184 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:33:40.189 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:33:55.436 INFO  o.s.c.TestClassTransformer - [CheckSpringApplicationAnnotation]@SpringBootApplication 확인 : com/dummy/jdbcserver/JdbcServerApplication
+09:33:55.446 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddAdditionalObjectToMain
+09:33:55.459 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:33:55.760 INFO  c.d.jdbcserver.JdbcServerApplication - Starting JdbcServerApplication using Java 21.0.2 with PID 13164 (C:\Users\Sysone\IdeaProjects\jdbcServer\build\classes\java\main started by Sysone in C:\Users\Sysone\IdeaProjects\jdbcServer)
+09:33:55.760 INFO  c.d.jdbcserver.JdbcServerApplication - No active profile set, falling back to 1 default profile: "default"
+09:33:56.152 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:33:56.258 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 101 ms. Found 1 JPA repository interface.
+09:33:56.592 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:33:56.602 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:33:56.603 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:33:56.603 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+09:33:56.645 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:33:56.645 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 856 ms
+09:33:56.743 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:33:56.775 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:33:56.793 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:33:56.942 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:33:56.960 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:33:57.189 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@131d977f
+09:33:57.190 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:33:57.196 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:33:57.223 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:33:57.223 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:33:57.761 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:33:57.798 WARN  org.sch.util.CodePrinter - [CODE_PRINTER_DONE] byteLog print done. : AddLoggerConn
+09:33:57.809 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:33:57.960 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:33:58.252 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:33:58.488 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:33:58.500 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:33:58.506 INFO  c.d.jdbcserver.JdbcServerApplication - Started JdbcServerApplication in 2.995 seconds (process running for 3.525)
+09:44:58.413 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+09:44:58.414 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+09:44:58.414 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+09:45:44.008 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:45:44.009 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:45:44.014 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:45:50.786 INFO  c.d.jdbcserver.JdbcServerApplication - Starting JdbcServerApplication using Java 21.0.2 with PID 16464 (C:\Users\Sysone\IdeaProjects\jdbcServer\build\classes\java\main started by Sysone in C:\Users\Sysone\IdeaProjects\jdbcServer)
+09:45:50.787 INFO  c.d.jdbcserver.JdbcServerApplication - No active profile set, falling back to 1 default profile: "default"
+09:45:51.188 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:45:51.283 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 90 ms. Found 1 JPA repository interface.
+09:45:51.621 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:45:51.631 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:45:51.633 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:45:51.633 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+09:45:51.672 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:45:51.672 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 857 ms
+09:45:51.767 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:45:51.801 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:45:51.819 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:45:51.977 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:45:51.992 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:45:52.223 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2591d23a
+09:45:52.223 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:45:52.225 INFO  o.s.c.TestClassTransformer - jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyConnection
+09:45:52.225 INFO  o.s.c.TestClassTransformer - jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyConnection
+09:45:52.225 INFO  o.s.c.TestClassTransformer - jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyConnection
+09:45:52.257 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:45:52.257 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+09:45:52.780 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:45:52.801 INFO  o.s.c.TestClassTransformer - jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyResultSet
+09:45:52.801 INFO  o.s.c.TestClassTransformer - jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyResultSet
+09:45:52.801 INFO  o.s.c.TestClassTransformer - jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyResultSet
+09:45:52.811 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:45:52.980 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:45:53.279 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:45:53.484 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:45:53.497 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:45:53.501 INFO  c.d.jdbcserver.JdbcServerApplication - Started JdbcServerApplication in 2.966 seconds (process running for 3.454)
+09:46:10.442 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+09:46:10.442 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+09:46:10.443 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+09:46:10.513 INFO  o.s.c.TestClassTransformer - jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyPreparedStatement
+09:46:10.513 INFO  o.s.c.TestClassTransformer - jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyPreparedStatement
+09:46:10.513 INFO  o.s.c.TestClassTransformer - jdk.internal.loader.ClassLoaders$AppClassLoader@36baf30c com/zaxxer/hikari/pool/HikariProxyPreparedStatement

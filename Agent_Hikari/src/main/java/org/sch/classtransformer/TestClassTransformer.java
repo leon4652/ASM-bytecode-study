@@ -20,24 +20,38 @@ public class TestClassTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
 
+//        if(HikariAgent.firstSystemClassLoad && loader.getClass().getName().contains("AppClassLoader")) { //spring Main, 시스템 클래스로더가 가장 먼저 접근하는 클래스
+//            //시스템 클래스로더가 읽은 파일 중 @SpringBootApplication를 가진 파일(목표)인지 스캔
+//            if (CheckSpringApplicationAnnotation.check(classfileBuffer)) {
+//                log.info("[CheckSpringApplicationAnnotation]@SpringBootApplication 확인 : {}", className);
+//                HikariAgent.firstSystemClassLoad = false;
+//                //시스템 클래스로더에서 먼저 부트하고자 하는 클래스 파일들을 변조하여 저장한다.
+//                return BuildClassNode(classfileBuffer, "AddAdditionalObjectToMain");
+//            }
+//        }
+
+
 //        //'HikariProxyPreparedStatement'의 변조를 수행
 //        if(className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement")) {
 //            int cnt = 1; while (cnt-- > 0) log.info("HIKARI CALL : " + loader.toString() + " " + className);
 //            return BuildClassNode(classfileBuffer, "AddLoggerPSTMT");
 //        }
 
-        //3. Connection Test
-        if(className.equals("com/zaxxer/hikari/pool/HikariProxyConnection") ||
-            className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement") ||
-//        if(
-                className.equals("com/zaxxer/hikari/pool/HikariProxyResultSet") ||
-                className.equals("com/zaxxer/hikari/pool/HikariProxyStatement")) {
-            int cnt = 1; while (cnt-- > 0) log.info("HIKARI_CONNECTION CALL : " + loader.toString() + " " + className);
-            return BuildClassNode(classfileBuffer, "AddLoggerConn");
-        }
+//        //3. Connection Test
+//        if(className.equals("com/zaxxer/hikari/pool/HikariProxyConnection") ||
+//            className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement") ||
+////        if(
+//                className.equals("com/zaxxer/hikari/pool/HikariProxyResultSet") ||
+//                className.equals("com/zaxxer/hikari/pool/HikariProxyStatement")) {
+//            return BuildClassNode(classfileBuffer, "AddLoggerConn");
+//        }
 
-        if(className.contains("SpringApplication")) {
-            int cnt = 1; while (cnt-- > 0) log.info("SPRING CALL : " + loader.toString() + " " + className);
+
+        switch (className) {
+            case "com/zaxxer/hikari/pool/HikariProxyConnection" -> {}
+            case "com/zaxxer/hikari/pool/HikariProxyPreparedStatement" -> {}
+            case "com/zaxxer/hikari/pool/HikariProxyStatement" -> {}
+            case "com/zaxxer/hikari/pool/HikariProxyResultSet" -> {}
         }
 
         return classfileBuffer;
