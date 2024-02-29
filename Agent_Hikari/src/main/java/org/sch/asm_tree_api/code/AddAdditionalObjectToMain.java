@@ -19,6 +19,8 @@ public class AddAdditionalObjectToMain {
             //name == main && desc == ([Ljava/lang/String;)V && sig == null
             if(methodNode.name.equals("main") && methodNode.desc.equals("([Ljava/lang/String;)V")) {
                 InsnList il = new InsnList();
+
+                //sysout console
                 il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;"));
                 il.add(new LdcInsnNode("Class.forName() Build."));
                 il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false));

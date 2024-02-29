@@ -38,6 +38,8 @@ dependencies {
     //logback
 //    implementation 'ch.qos.logback:logback-classic:1.4.14'
 //    implementation 'ch.qos.logback:logback-core:1.4.14'
+    //Slf4j
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 
     //jdbc starter
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
