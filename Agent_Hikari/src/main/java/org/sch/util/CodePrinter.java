@@ -18,11 +18,9 @@ public class CodePrinter {
         try {
             DateTimeFormatter formattedDate = DateTimeFormatter.ofPattern("MM-dd__HH-mm-ss"); //시간 타입
             String name = convert(rawName); //className
-            System.out.println("TTT33333 : " + name);
             String fileName = LocalDateTime.now().format(formattedDate) + "__" + name + ".class";
             String directoryPath = System.getProperty("user.dir") + File.separator + "byteLog"; // 디렉토리 경로
             String filePath = directoryPath + File.separator + fileName; // 최종 파일 경로
-            System.out.println("TTT44444 : " + fileName);
 
             File directory = new File(directoryPath);
             if (!directory.exists()) {
@@ -50,7 +48,6 @@ public class CodePrinter {
     //폴더 초기화
     public static void deleteFiles(boolean use) {
         if(!use) return;
-
         String directoryPath = System.getProperty("user.dir") + File.separator + "byteLog"; // 디렉토리 경로
         File directory = new File(directoryPath);
         if (!directory.exists()) {
@@ -65,11 +62,9 @@ public class CodePrinter {
         }
     }
 
-    //Class명만 추출
+    //Class명만 추출 : ex : full/path/package/className ..
     public static String convert(String fullName) {
-        int lastIndex = fullName.lastIndexOf('/'); // 마지막 '\'의 인덱스
-        System.out.println("TTTTTTTTT : " + fullName.substring(lastIndex + 1));
-        System.out.println("TTTTTTTTT : " + lastIndex);
-        return fullName.substring(lastIndex + 1); // 마지막 '\' 다음 위치부터 문자열의 끝까지가 클래스 이름
+        int lastIndex = fullName.lastIndexOf('/'); // 마지막 '/'의 인덱스
+        return fullName.substring(lastIndex + 1); // 마지막 '/' 다음 위치부터 문자열의 끝까지가 클래스 이름
     }
 }
