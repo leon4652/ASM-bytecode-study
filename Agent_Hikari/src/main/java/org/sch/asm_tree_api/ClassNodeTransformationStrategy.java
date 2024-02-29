@@ -3,7 +3,7 @@ package org.sch.asm_tree_api;
 import org.objectweb.asm.tree.ClassNode;
 import org.sch.asm_tree_api.code.*;
 import org.sch.asm_tree_api.code.hikari.AddLoggerPSTMT;
-import org.sch.asm_tree_api.code.hikari.AddLoggerConn;
+import org.sch.asm_tree_api.code.hikari.AddLoggerAllClass;
 import org.sch.asm_tree_api.code.hikari.ModifyPreparedStatement;
 
 /**
@@ -20,8 +20,8 @@ public class ClassNodeTransformationStrategy {
             case "AddLoggerPSTMT" -> {
                 AddLoggerPSTMT.apply(cn);
             }
-            case "AddLoggerConn" -> {
-                AddLoggerConn.apply(cn);
+            case "AddLoggerAllClass" -> {
+                AddLoggerAllClass.apply(cn);
             }
             case "ModifyPreparedStatement" -> {
                 ModifyPreparedStatement.apply(cn);

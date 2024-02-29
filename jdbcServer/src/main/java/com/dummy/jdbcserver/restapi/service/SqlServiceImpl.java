@@ -45,7 +45,12 @@ public class SqlServiceImpl implements SqlService {
     @Override
     public List<SqlDummyDto> getLists() {
         List<SqlDummy> list = sqlDummyRepository.getLists(PageRequest.of(0, 3));
-        List<SqlDummy> list2 = sqlDummyRepository.getLists(PageRequest.of(1, 3));
+        return EntityTransfer.run(list);
+    }
+
+    @Override
+    public List<SqlDummyDto> getLists(int pageNumber, int pageSize) {
+        List<SqlDummy> list = sqlDummyRepository.getLists(PageRequest.of(pageNumber, pageSize));
         return EntityTransfer.run(list);
     }
 }

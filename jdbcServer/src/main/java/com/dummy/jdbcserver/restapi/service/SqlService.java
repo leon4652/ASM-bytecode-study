@@ -10,4 +10,6 @@ public interface SqlService {
     void insertWithNativeQuery();
 
     List<SqlDummyDto> getLists();
+
+    public List<SqlDummyDto> getLists(int pageNumber, int pageSize);
 }

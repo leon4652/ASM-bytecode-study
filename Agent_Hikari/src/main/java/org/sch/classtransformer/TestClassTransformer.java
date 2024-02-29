@@ -4,10 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
-import org.sch.HikariAgent;
 import org.sch.asm_tree_api.ClassNodeTransformationStrategy;
 import org.sch.asm_tree_api.code.CheckSpringApplicationAnnotation;
-import org.sch.asm_tree_api.code.hikari.AddLoggerConn;
 import org.sch.util.CodePrinter;
 
 import java.lang.instrument.ClassFileTransformer;
@@ -28,34 +26,12 @@ public class TestClassTransformer implements ClassFileTransformer {
             if(modifyMainClass_addClassForNameCode(classfileBuffer, loader.getClass().getName())) return modifiedBytecodeInLocalMethod;
         }
 
-
         if (className.contains("com/zaxxer/hikari/pool/")) {
-            if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
+//            if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
+            log.warn("[PREMAIN]==========> CLASS : {} ", className);
+            return modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
         }
-//        if (className.contains("com/zaxxer/hikari/pool/")) {
-//            switch (className) {
-//                case "com/zaxxer/hikari/pool/HikariProxyConnection" -> {
-//                    log.warn("[CONN 호출]");
-//                    modifyByteCode(classfileBuffer, "AddLoggerConn", true, false);
-//                    return modifiedBytecodeInLocalMethod;
-//                }
-//                case "com/zaxxer/hikari/pool/HikariProxyPreparedStatement" -> {
-//                    log.warn("[PSTMT 호출]");
-//                    modifyByteCode(classfileBuffer, "AddLoggerPSTMT", true, false);
-//                    return modifiedBytecodeInLocalMethod;
-//                }
-//                case "com/zaxxer/hikari/pool/HikariProxyStatement" -> {
-//                    log.warn("[STMT 호출]");
-//                    modifyByteCode(classfileBuffer, "AddLoggerConn", true, false);
-//                    return modifiedBytecodeInLocalMethod;
-//                }
-//                case "com/zaxxer/hikari/pool/HikariProxyResultSet" -> {
-//                    log.warn("[RS 호출]");
-//                    modifyByteCode(classfileBuffer, "AddLoggerConn", true, false);
-//                    return modifiedBytecodeInLocalMethod;
-//                }
-//            }
-//        }
+
 
 
         return classfileBuffer;
@@ -65,7 +41,7 @@ public class TestClassTransformer implements ClassFileTransformer {
         switch (className) {
             case "com/zaxxer/hikari/pool/HikariProxyConnection" -> {
                 log.warn("[CONN 호출]");
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerConn", true, false);
+                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
                 return true;
             }
             case "com/zaxxer/hikari/pool/HikariProxyPreparedStatement" -> {
@@ -75,12 +51,12 @@ public class TestClassTransformer implements ClassFileTransformer {
             }
             case "com/zaxxer/hikari/pool/HikariProxyStatement" -> {
                 log.warn("[STMT 호출]");
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerConn", true, false);
+                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
                 return true;
             }
             case "com/zaxxer/hikari/pool/HikariProxyResultSet" -> {
                 log.warn("[RS 호출]");
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerConn", true, false);
+                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
                 return true;
             }
         }

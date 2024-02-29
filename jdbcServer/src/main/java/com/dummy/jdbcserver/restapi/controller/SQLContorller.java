@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -26,13 +27,18 @@ public class SQLContorller {
         sqlService.randomSQLInsert();
     }
 
-    @GetMapping("/pstmt")
+    @GetMapping("/t2")
     public void checkPstmtUseInsert() {
         sqlService.insertWithNativeQuery();
     }
 
-    @GetMapping("/get-list")
+    @GetMapping("/t3")
     public List<SqlDummyDto> getList() {
         return sqlService.getLists();
+    }
+
+    @GetMapping("/t4")
+    public List<SqlDummyDto> getList(@RequestParam int pageNumber, @RequestParam int pageSize) {
+        return sqlService.getLists(pageNumber, pageSize) ;
     }
 }

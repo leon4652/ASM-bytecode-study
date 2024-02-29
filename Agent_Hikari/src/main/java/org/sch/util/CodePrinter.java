@@ -44,4 +44,20 @@ public class CodePrinter {
             log.warn("[CODE_PRINTER ERR] : {}", e.getMessage());
         }
     }
+    
+    //폴더 초기화
+    public static void deleteFiles() {
+        String directoryPath = System.getProperty("user.dir") + File.separator + "byteLog"; // 디렉토리 경로
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs(); // 디렉토리가 없으면 생성
+        } 
+        // deleteLastFile이 true일 경우, 디렉토리 내 모든 파일 삭제
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                file.delete(); // 파일 삭제
+            }
+        }
+    }
 }
