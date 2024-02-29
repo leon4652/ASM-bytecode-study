@@ -1,8 +1,10 @@
 package org.sch.asm_tree_api.code.hikari;
 
+import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
+import org.sch.util.CodePrinter;
 
 import java.util.Iterator;
 
@@ -24,8 +26,9 @@ public class AddLoggerAllClass {
 
                 InsnList il = new InsnList();
 
+
                 il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;"));
-                il.add(new LdcInsnNode("class : " + " : " + cn.name + " : " + methodNode.name ));
+                il.add(new LdcInsnNode("[class/method] : " + cn.name + " : " + methodNode.name ));
                 il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false));
 
                 methodNode.instructions.insert(il); //return보다 앞서서 메서드 맨 위에 지시문 추가.

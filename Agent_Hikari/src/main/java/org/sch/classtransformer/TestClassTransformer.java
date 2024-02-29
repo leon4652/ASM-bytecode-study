@@ -22,9 +22,9 @@ public class TestClassTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
 
         //main 변조되어있지 않다면 check 후 변조 시도
-        if(!isModifiedMain) {
-            if(modifyMainClass_addClassForNameCode(classfileBuffer, loader.getClass().getName())) return modifiedBytecodeInLocalMethod;
-        }
+//        if(!isModifiedMain) {
+//            if(modifyMainClass_addClassForNameCode(classfileBuffer, loader.getClass().getName())) return modifiedBytecodeInLocalMethod;
+//        }
 
         if (className.contains("com/zaxxer/hikari/pool/")) {
 //            if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
@@ -66,18 +66,18 @@ public class TestClassTransformer implements ClassFileTransformer {
     /**
      * 'AppClassLaoder'사용 && 'SpringApplication이 존재하는 Main 메서드 탐색'하여 True시 전역변수 코드 변조
      */
-    private boolean modifyMainClass_addClassForNameCode(byte[] classfileBuffer, String ClassLoaderName) {
-        if(ClassLoaderName.contains("AppClassLoader")) { //Application Class Loader인지 여부
-            //Class에 @SpringBootApplication가 있는지? (SpringApplication에 존재)
-            if (CheckSpringApplicationAnnotation.check(classfileBuffer)) {
-                log.info("[CheckSpringApplicationAnnotation]@SpringBootApplication 확인");
-                isModifiedMain = true;
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddAdditionalObjectToMain", true, false);
-                return true;
-            }
-        }
-        return false;
-    }
+//    private boolean modifyMainClass_addClassForNameCode(byte[] classfileBuffer, String ClassLoaderName) {
+//        if(ClassLoaderName.contains("AppClassLoader")) { //Application Class Loader인지 여부
+//            //Class에 @SpringBootApplication가 있는지? (SpringApplication에 존재)
+//            if (CheckSpringApplicationAnnotation.check(classfileBuffer)) {
+//                log.info("[CheckSpringApplicationAnnotation]@SpringBootApplication 확인");
+//                isModifiedMain = true;
+//                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddAdditionalObjectToMain", true, false);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
 
     /**
@@ -97,7 +97,7 @@ public class TestClassTransformer implements ClassFileTransformer {
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         cn.accept(cw);
         byte[] result = cw.toByteArray(); //result
-        if (setPrint) CodePrinter.printClass(result, code, deleteLastFile); //Print class
+        if (setPrint) CodePrinter.printClass(result, cn.name, deleteLastFile); //Print class
         return result;
     }
 }

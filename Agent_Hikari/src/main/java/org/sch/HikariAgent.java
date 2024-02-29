@@ -12,7 +12,7 @@ public class HikariAgent {
 
     public static void premain(String agentArgs, Instrumentation instrumentation) {
         Banner.send(agentArgs); //banner
-        CodePrinter.deleteFiles(); //파일 초기화
+        CodePrinter.deleteFiles(false); //파일 초기화
         instrumentation.addTransformer(new TestClassTransformer());
     }
 }

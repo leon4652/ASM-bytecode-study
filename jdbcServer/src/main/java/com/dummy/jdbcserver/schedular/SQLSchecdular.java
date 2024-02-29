@@ -15,6 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class SQLSchecdular {
     int count = 0;
     boolean useRepeat = false;
+    boolean useThrow = false;
     @Scheduled(fixedRate = 5000)
     public void autoLog() throws Exception {
         if (!useRepeat) return;
@@ -37,4 +38,14 @@ public class SQLSchecdular {
                 });
     }
 
+    @Scheduled(fixedRate = 5000)
+    public void autoThrow() throws Exception {
+        if(!useThrow) return;
+        if (count > 0) {
+            throw new NullPointerException();
+        } else {
+            count++;
+        }
+
+    }
 }
