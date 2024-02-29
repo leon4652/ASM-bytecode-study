@@ -28,6 +28,13 @@ public class HikariTransformer implements ClassFileTransformer {
         if (className.contains("com/zaxxer/hikari/pool/")) {
 //            if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
 
+            if(className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement")) {
+                System.out.println("TRIG");
+                System.out.println("TRIG");
+                System.out.println("TRIG");
+                return modifyByteCode(classfileBuffer, "AddLoggerPSTMT", true, false);
+            }
+
             log.warn("[PREMAIN]==========> CLASS : {} ", className);
             return modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
         }
@@ -93,7 +100,7 @@ public class HikariTransformer implements ClassFileTransformer {
         ClassReader cr = new ClassReader(classfileBuffer);
         ClassNode cn = new ClassNode();
         cr.accept(cn, 0);
-        ClassNodeTransformationStrategy.select(cn, code); //Transfer Logic Apply
+        ClassNodeTransformationStrategy.select(cn, code); //[HERE] Transfer Logic Apply
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         cn.accept(cw);
         byte[] result = cw.toByteArray(); //result

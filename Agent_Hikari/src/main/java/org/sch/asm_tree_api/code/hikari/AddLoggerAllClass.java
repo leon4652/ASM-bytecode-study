@@ -18,15 +18,10 @@ public class AddLoggerAllClass {
         //2진수 bit And 검증 : ABSTRACT(1024), 그 외 1023 이하..(PUBLIC = 1)
         if((cn.access & Opcodes.ACC_ABSTRACT) != 0) return;
 
-
         Iterator<MethodNode> iterator = cn.methods.iterator();
         while (iterator.hasNext()) {
             MethodNode methodNode = iterator.next();
-            Type[] argumentTypes = Type.getArgumentTypes(methodNode.desc); //MethodNode의 입력 타입, void일 경우 Null
-
                 InsnList il = new InsnList();
-
-
                 il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;"));
                 il.add(new LdcInsnNode("[class/method] : " + cn.name + " : " + methodNode.name ));
                 il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false));
