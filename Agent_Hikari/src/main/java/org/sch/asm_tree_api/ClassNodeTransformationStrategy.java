@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.objectweb.asm.tree.ClassNode;
 import org.sch.asm_tree_api.code.*;
 import org.sch.asm_tree_api.code.hikari.*;
-import org.sch.util.CodePrinter;
 
 /**
  * Code에 따라, 다른 클래스를 선택한다. ClassNode 참조를 통해 ClassNode의 값을 변경한다.
@@ -19,11 +18,11 @@ public class ClassNodeTransformationStrategy {
             case "AddAdditionalObjectToMain" -> {
                 AddAdditionalObjectToMain.apply(cn);
             }
-            case "AddLoggerPSTMT" -> {
-                AddLoggerPSTMT.apply(cn);
+            case "AddLoggerProxyPreparedStatement" -> {
+                AddLoggerProxyPreparedStatement.apply(cn);
             }
             case "AddLoggerAllClass" -> {
-                AddLoggerAllClassTemp.apply(cn);
+                AddLoggerAllClass.apply(cn);
             }
             case "ModifyPreparedStatement" -> {
                 ModifyPreparedStatement.apply(cn);

@@ -1,15 +1,10 @@
 package org.sch.asm_tree_api.code.hikari;
 
-import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
 import org.sch.asm_tree_api.LoggerUtil;
-import org.sch.util.CodePrinter;
 
 import java.util.Iterator;
-
-import static org.objectweb.asm.Opcodes.*;
 
 /**
  * use for modify test, add logging
@@ -25,7 +20,7 @@ public class AddLoggerAllClass {
             InsnList il = new InsnList();
 
             // Logger 인스턴스 생성
-            int loggerIndex = LoggerUtil.loggerInit(cn, methodNode, il);
+            int loggerIndex = LoggerUtil.loggerInstanceInit(cn, methodNode, il);
 
             String content = "[class/method] : " + cn.name + " : " + methodNode.name;
             LoggerUtil.sendLogString(il, loggerIndex, content, LoggerUtil.LogType.valueOf("info"));

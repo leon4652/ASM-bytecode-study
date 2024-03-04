@@ -15,7 +15,7 @@ public class LoggerUtil {
      * @param mn
      * @param il
      */
-    public static int loggerInit(ClassNode cn, MethodNode mn, InsnList il) {
+    public static int loggerInstanceInit(ClassNode cn, MethodNode mn, InsnList il) {
         // Logger 인스턴스 생성
         il.add(new LdcInsnNode(Type.getType("L" + cn.name + ";")));
         il.add(new MethodInsnNode(INVOKESTATIC, "org/slf4j/LoggerFactory", "getLogger", "(Ljava/lang/Class;)Lorg/slf4j/Logger;", false));

@@ -20,16 +20,16 @@ public class HikariTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
 
-        //main 변조되어있지 않다면 check 후 변조 시도
-//        if(!isModifiedMain) {
-//            if(modifyMainClass_addClassForNameCode(classfileBuffer, loader.getClass().getName())) return modifiedBytecodeInLocalMethod;
-//        }
 
         if (className.contains("com/zaxxer/hikari/pool/")) {
 //            if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
 
             if(className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement")) {
                 return modifyByteCode(classfileBuffer, "AddLoggerMethodNameAndInputParam", true, false);
+            }
+            if(className.contains("ProxyPreparedStatement")) {
+                System.out.println("1차 TRIG : " + className);
+                return modifyByteCode(classfileBuffer, "AddLoggerProxyPreparedStatement", true, false);
             }
 
             log.warn("[PREMAIN]==========> CLASS : {} ", className);
