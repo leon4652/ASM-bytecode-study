@@ -19,22 +19,25 @@ public class AddLoggerPSTMT {
         Iterator<MethodNode> iterator = cn.methods.iterator();
         while (iterator.hasNext()) {
             MethodNode methodNode = iterator.next();
-            Type[] argumentTypes = Type.getArgumentTypes(methodNode.desc); //MethodNode의 입력 타입, void일 경우 Null
-//            if (methodNode.name.contains("execute") && argumentTypes.length > 0) {
-            InsnList il = new InsnList();
-            String content = "[class/method] : " + cn.name + " : " + methodNode.name; //sysout content
-            //입력 파라미터가 있다면 입력 파라미터도 출력
+//            Type[] argumentTypes = Type.getArgumentTypes(methodNode.desc); //MethodNode의 입력 타입, void일 경우 Null
+            System.out.println("TRIG, MethodName : " + methodNode.name);
+            if (methodNode.name.contains("execute")) {
+                InsnList il = new InsnList();
+                String content = "[class/method] : " + cn.name + " : " + methodNode.name; //sysout content
+
+                //입력 파라미터가 있다면 입력 파라미터도 출력
 
 
-            il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;"));
-            il.add(new LdcInsnNode(content));
-            il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false));
+                il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;"));
+                il.add(new LdcInsnNode(content));
+                il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false));
 
 
-            methodNode.instructions.insert(il); //return보다 앞서서 메서드 맨 위에 지시문 추가.
-//            }
+                methodNode.instructions.insert(il); //return보다 앞서서 메서드 맨 위에 지시문 추가.
+            }
         }
     }
 
-    private void temp() {}
+    private void temp() {
+    }
 }

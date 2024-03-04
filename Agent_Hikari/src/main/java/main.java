@@ -34,34 +34,37 @@ public class main {
             InsnList il = new InsnList();
             // 파라미터 타입 가져오기
             Type[] argumentTypes = Type.getArgumentTypes(methodNode.desc);
+            System.out.println("========================");
             System.out.println(Arrays.toString(argumentTypes));
-            System.out.println(methodNode.name + " : 파라미터개수 : " + argumentTypes.length);
-
-
+            System.out.println(methodNode.name + " : arguementTypes.length : " + argumentTypes.length);
 
             //Static 메서드 체크
             boolean isStatic = (methodNode.access & ACC_STATIC) != 0;
-            
-            //static이면 지역배열 0번부터 스택
-            //타입 별로 입력 파라미터가 다르니, argumentTypes을 활용
+            int localIndex = isStatic ? 0 : 1; //정적 변수의 경우 지역변수 인덱스가 0부터 시작
 
-//            for (; idx <= inputParmLength; idx++) {
-//                il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;"));
-//
-//                Type paramType = argumentTypes[i];
-//                System.out.println(paramType);
-////                int loadOpcode = paramType.getOpcode(ILOAD); // 파라미터 타입에 맞는 로드 명령
-////
-////                // 해당 타입에 맞는 로드 명령 추가
-////                il.add(new VarInsnNode(loadOpcode, idx + i));
-////
-////                // 적절한 println 메서드 호출을 위한 타입 설명자
-////                String descriptor = "(" + paramType.getDescriptor() + ")V";
-////                il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", descriptor, false));
-//            }
-            methodNode.instructions.add(il);
+            for (Type argumentType : argumentTypes) {
+                System.out.println("isStatic : " + isStatic);
+                System.out.println("argumentType : " + argumentType);
+
+                //Logging(console)
+                il.add(new FieldInsnNode(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream"));
+                int loadOpcode = argumentType.getOpcode(ILOAD);     //파라미터 타입에 따른 로드 명령어 가져오기
+                System.out.println("loadOpcode : " + loadOpcode);
+                il.add(new VarInsnNode(loadOpcode, localIndex));    //지역 변수 스택에 로드(저장)
+
+                String descriptor = "(" + argumentType.getDescriptor() + ")V";
+                System.out.println("TEST Desc : " + descriptor);
+                il.add(new MethodInsnNode(INVOKEVIRTUAL, "java/io/PrintStream", "println", descriptor, false));
+
+                localIndex += argumentType.getSize(); //다음 파라미터 인덱스 업데이트 (long, Double 등.. 8비트들은 변수 Array를 2칸 차지함
+
+            }
+
+            methodNode.instructions.insert(il);
         }
     }
+
+
 
     public static ClassNode tempMakeClass() {
         ClassNode cn = new ClassNode();
@@ -87,18 +90,22 @@ public class main {
         //M4
         MethodNode m4 = new MethodNode(ACC_PUBLIC + ACC_STATIC, "m4", "(II)I", null, null);
         il = new InsnList();
+        il.add(new VarInsnNode(ILOAD, 0));
         il.add(new VarInsnNode(ILOAD, 1));
-        il.add(new VarInsnNode(ILOAD, 2));
         il.add(new InsnNode(IADD));
         il.add(new InsnNode(IRETURN));
         m4.instructions.add(il);
 
 
         cn.methods.add(new MethodNode(ACC_PUBLIC, "m1", "()V", null, null));
+        cn.methods.add(new MethodNode(ACC_PROTECTED, "m2Copy", "(I)V", null, null));
         cn.methods.add(m2);
         cn.methods.add(m3);
         cn.methods.add(m4);
         cn.methods.add(new MethodNode(ACC_PUBLIC + ACC_STATIC, "m5", "(Ljava/lang/String;)V", null, null));
-        return cn;
+        cn.methods.add(new MethodNode(ACC_PUBLIC + ACC_STATIC, "m6", "(FFF)D", null, null));
+        cn.methods.add(new MethodNode(ACC_PROTECTED, "m7", "(Ljava/lang/String;Lorg/sch/HikariAgent;)V",null,null));
+        cn.methods.add(new MethodNode(ACC_PROTECTED, "m8", "(IIFJD)V",null,null));
+        return cn;//Lorg/sch/HikariAgent;
     }
 }

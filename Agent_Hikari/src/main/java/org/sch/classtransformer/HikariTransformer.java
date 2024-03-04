@@ -29,9 +29,6 @@ public class HikariTransformer implements ClassFileTransformer {
 //            if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
 
             if(className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement")) {
-                System.out.println("TRIG");
-                System.out.println("TRIG");
-                System.out.println("TRIG");
                 return modifyByteCode(classfileBuffer, "AddLoggerPSTMT", true, false);
             }
 
