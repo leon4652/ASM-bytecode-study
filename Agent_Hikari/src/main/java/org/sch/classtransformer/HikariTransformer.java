@@ -29,7 +29,7 @@ public class HikariTransformer implements ClassFileTransformer {
 //            if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
 
             if(className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement")) {
-                return modifyByteCode(classfileBuffer, "AddLoggerPSTMT", true, false);
+                return modifyByteCode(classfileBuffer, "AddLoggerMethodNameAndInputParam", true, false);
             }
 
             log.warn("[PREMAIN]==========> CLASS : {} ", className);

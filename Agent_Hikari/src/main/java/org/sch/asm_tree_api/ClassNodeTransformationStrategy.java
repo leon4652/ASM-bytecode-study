@@ -3,9 +3,7 @@ package org.sch.asm_tree_api;
 import lombok.extern.slf4j.Slf4j;
 import org.objectweb.asm.tree.ClassNode;
 import org.sch.asm_tree_api.code.*;
-import org.sch.asm_tree_api.code.hikari.AddLoggerPSTMT;
-import org.sch.asm_tree_api.code.hikari.AddLoggerAllClass;
-import org.sch.asm_tree_api.code.hikari.ModifyPreparedStatement;
+import org.sch.asm_tree_api.code.hikari.*;
 import org.sch.util.CodePrinter;
 
 /**
@@ -25,10 +23,13 @@ public class ClassNodeTransformationStrategy {
                 AddLoggerPSTMT.apply(cn);
             }
             case "AddLoggerAllClass" -> {
-                AddLoggerAllClass.apply(cn);
+                AddLoggerAllClassTemp.apply(cn);
             }
             case "ModifyPreparedStatement" -> {
                 ModifyPreparedStatement.apply(cn);
+            }
+            case "AddLoggerMethodNameAndInputParam" -> {
+                AddLoggerMethodNameAndInputParam.apply(cn);
             }
             default -> throw new IllegalArgumentException("Unsupported name: " + code);
         }
