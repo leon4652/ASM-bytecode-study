@@ -11,6 +11,7 @@ import static org.objectweb.asm.Opcodes.*;
 
 /**
  * use for modify test, add logging
+ * ProxyPreparedStateMent 파일에 로깅 다는 로직
  */
 public class AddLoggerProxyPreparedStatement {
     public static void apply(ClassNode cn) {

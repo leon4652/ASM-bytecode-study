@@ -21,16 +21,18 @@ public class HikariTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
 
 
-        if (className.contains("com/zaxxer/hikari/pool/")) {
-//            if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
+        if (className.contains("com/zaxxer/hikari/")) {
+            if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
 
-            if(className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement")) {
-                return modifyByteCode(classfileBuffer, "AddLoggerMethodNameAndInputParam", true, false);
-            }
-            if(className.contains("ProxyPreparedStatement")) {
-                System.out.println("1차 TRIG : " + className);
-                return modifyByteCode(classfileBuffer, "AddLoggerProxyPreparedStatement", true, false);
-            }
+//            if(className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement")) {
+//                return modifyByteCode(classfileBuffer, "AddLoggerMethodNameAndInputParam", true, false);
+//            }
+//            if(className.equals("com/zaxxer/hikari/pool/ProxyPreparedStatement")) {
+//                return modifyByteCode(classfileBuffer, "AddLoggerProxyPreparedStatement", true, false);
+//            }
+//            if(className.equals("com/zaxxer/hikari/pool/ProxyConnection")) {
+//                System.out.println("2차 TRIG : " + className);
+//            }
 
             log.warn("[PREMAIN]==========> CLASS : {} ", className);
             return modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
@@ -43,25 +45,23 @@ public class HikariTransformer implements ClassFileTransformer {
 
     private boolean modifyHikariCP_addLog(byte[] classfileBuffer, String className) {
         switch (className) {
-            case "com/zaxxer/hikari/pool/HikariProxyConnection" -> {
-                log.warn("[CONN 호출]");
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
-                return true;
-            }
             case "com/zaxxer/hikari/pool/HikariProxyPreparedStatement" -> {
-                log.warn("[PSTMT 호출]");
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerPSTMT", true, false);
+                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerMethodNameAndInputParam", true, false);
                 return true;
             }
-            case "com/zaxxer/hikari/pool/HikariProxyStatement" -> {
-                log.warn("[STMT 호출]");
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
+            case "com/zaxxer/hikari/pool/ProxyPreparedStatement" -> {
+                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerProxyPreparedStatement", true, false);
                 return true;
             }
-            case "com/zaxxer/hikari/pool/HikariProxyResultSet" -> {
-                log.warn("[RS 호출]");
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
+            case "com/zaxxer/hikari/pool/ProxyConnection" -> {
+                System.out.println("TTTTTTEEEEEEEEEEEEEEEEEEEEEE");
+                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerProxyConnection_statement", true, false);
                 return true;
+            }
+
+            default -> {
+//                log.warn("[ERROR] class {}가 com/zaxxer/hikari/pool/ 내부에 존재하지 않음.", className);
+//                log.warn("[ERROR] 원본 값을 그대로 리턴합니다.");
             }
         }
         return false;
