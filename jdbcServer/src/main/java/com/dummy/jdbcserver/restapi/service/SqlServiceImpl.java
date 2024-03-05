@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
@@ -23,6 +22,26 @@ import java.util.Random;
 public class SqlServiceImpl implements SqlService {
 
     private final SqlDummyRepository sqlDummyRepository;
+
+    @Override
+    public List<SqlDummyDto> select(int no) {
+        return EntityTransfer.run(sqlDummyRepository.select(no));
+    }
+    @Override
+    public void create(String etc) {
+        SqlDummy s =  new SqlDummy();
+        s.setEtc(etc);
+        sqlDummyRepository.save(s);
+    }
+    @Override
+    public void update(int no, LocalDateTime localDateTime) {
+        sqlDummyRepository.update(no, localDateTime);
+    }
+    @Override
+    public void delete(String etc) {
+        sqlDummyRepository.delete(etc);
+    }
+
 
     @Override
     public void randomSQLInsert() {

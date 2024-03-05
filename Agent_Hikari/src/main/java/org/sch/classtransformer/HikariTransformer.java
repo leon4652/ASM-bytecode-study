@@ -36,14 +36,14 @@ public class HikariTransformer implements ClassFileTransformer {
 
 private boolean modifyHikariCP_addLog(byte[] classfileBuffer, String className) {
         switch (className) {
-            case "com/zaxxer/hikari/pool/HikariProxyPreparedStatement" -> {
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerMethodNameAndInputParam", true, false);
-                return true;
-            }
-            case "com/zaxxer/hikari/pool/ProxyPreparedStatement" -> {
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerProxyPreparedStatement", true, false);
-                return true;
-            }
+//            case "com/zaxxer/hikari/pool/HikariProxyPreparedStatement" -> {
+//                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerMethodNameAndInputParam", true, false);
+//                return true;
+//            }
+//            case "com/zaxxer/hikari/pool/ProxyPreparedStatement" -> {
+//                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerProxyPreparedStatement", true, false);
+//                return true;
+//            }
             case "com/zaxxer/hikari/pool/HikariProxyConnection" -> {
                 modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerHikariProxyConnection", true, false);
                 return true;

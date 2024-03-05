@@ -2,8 +2,8 @@ package org.sch.asm_tree_api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.objectweb.asm.tree.ClassNode;
-import org.sch.asm_tree_api.code.*;
 import org.sch.asm_tree_api.code.hikari.*;
+import org.sch.asm_tree_api.code.legacy.AddAdditionalObjectToMain;
 
 /**
  * Code에 따라, 다른 클래스를 선택한다. ClassNode 참조를 통해 ClassNode의 값을 변경한다.

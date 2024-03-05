@@ -10,32 +10,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/sql")
+@RequestMapping("/crud")
 @RequiredArgsConstructor
 @Slf4j
 public class SQLContorller {
 
     private final SqlService sqlService;
-
-    @GetMapping("/random")
-    public void randomSQLInsert() {
-        sqlService.randomSQLInsert();
+    @GetMapping("/create")
+    public void create() {
+        sqlService.create("ABCD");
     }
 
-    @GetMapping("/t2")
-    public void checkPstmtUseInsert() {
-        sqlService.insertWithNativeQuery();
+    @GetMapping("/select")
+    public void select() {
+        List<SqlDummyDto> list = sqlService.select(1);
+        for(SqlDummyDto s : list) System.out.println(s.no() + " " + s.etc());
     }
 
-    @GetMapping("/t3")
-    public List<SqlDummyDto> getList() {
-        return sqlService.getLists();
+    @GetMapping("/delete")
+    public void delete() {
+        String tempStr = "tempString";
+        sqlService.create(tempStr);
+        sqlService.delete(tempStr);
     }
+
+     @GetMapping("/update")
+    public void update() {
+        sqlService.update(1, LocalDateTime.now());
+    }
+
+
 
     @GetMapping("/t4")
     public List<SqlDummyDto> getList(@RequestParam int pageNumber, @RequestParam int pageSize) {
