@@ -24,8 +24,8 @@ public class ClassNodeTransformationStrategy {
             case "AddLoggerAllClass" -> {
                 AddLoggerAllClass.apply(cn);
             }
-            case "AddLoggerProxyConnection_statement" -> {
-                AddLoggerProxyConnection_statement.apply(cn);
+            case "AddLoggerHikariProxyConnection" -> {
+                AddLoggerHikariProxyConnection.apply(cn);
             }
             case "AddLoggerMethodNameAndInputParam" -> {
                 AddLoggerMethodNameAndInputParam.apply(cn);

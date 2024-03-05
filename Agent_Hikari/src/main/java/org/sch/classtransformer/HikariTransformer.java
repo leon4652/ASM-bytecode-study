@@ -20,22 +20,11 @@ public class HikariTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
 
-
+        //HikariCP 파싱 후 변환
         if (className.contains("com/zaxxer/hikari/")) {
             if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
-
-//            if(className.equals("com/zaxxer/hikari/pool/HikariProxyPreparedStatement")) {
-//                return modifyByteCode(classfileBuffer, "AddLoggerMethodNameAndInputParam", true, false);
-//            }
-//            if(className.equals("com/zaxxer/hikari/pool/ProxyPreparedStatement")) {
-//                return modifyByteCode(classfileBuffer, "AddLoggerProxyPreparedStatement", true, false);
-//            }
-//            if(className.equals("com/zaxxer/hikari/pool/ProxyConnection")) {
-//                System.out.println("2차 TRIG : " + className);
-//            }
-
-            log.warn("[PREMAIN]==========> CLASS : {} ", className);
-            return modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
+            //전체 로깅
+//          return modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
         }
 
 
@@ -43,7 +32,9 @@ public class HikariTransformer implements ClassFileTransformer {
         return classfileBuffer;
     }
 
-    private boolean modifyHikariCP_addLog(byte[] classfileBuffer, String className) {
+
+
+private boolean modifyHikariCP_addLog(byte[] classfileBuffer, String className) {
         switch (className) {
             case "com/zaxxer/hikari/pool/HikariProxyPreparedStatement" -> {
                 modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerMethodNameAndInputParam", true, false);
@@ -53,39 +44,18 @@ public class HikariTransformer implements ClassFileTransformer {
                 modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerProxyPreparedStatement", true, false);
                 return true;
             }
-            case "com/zaxxer/hikari/pool/ProxyConnection" -> {
-                System.out.println("TTTTTTEEEEEEEEEEEEEEEEEEEEEE");
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerProxyConnection_statement", true, false);
+            case "com/zaxxer/hikari/pool/HikariProxyConnection" -> {
+                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerHikariProxyConnection", true, false);
                 return true;
             }
-
-            default -> {
-//                log.warn("[ERROR] class {}가 com/zaxxer/hikari/pool/ 내부에 존재하지 않음.", className);
-//                log.warn("[ERROR] 원본 값을 그대로 리턴합니다.");
-            }
+            default -> {}
         }
         return false;
     }
 
     /**
-     * 'AppClassLaoder'사용 && 'SpringApplication이 존재하는 Main 메서드 탐색'하여 True시 전역변수 코드 변조
-     */
-//    private boolean modifyMainClass_addClassForNameCode(byte[] classfileBuffer, String ClassLoaderName) {
-//        if(ClassLoaderName.contains("AppClassLoader")) { //Application Class Loader인지 여부
-//            //Class에 @SpringBootApplication가 있는지? (SpringApplication에 존재)
-//            if (CheckSpringApplicationAnnotation.check(classfileBuffer)) {
-//                log.info("[CheckSpringApplicationAnnotation]@SpringBootApplication 확인");
-//                isModifiedMain = true;
-//                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddAdditionalObjectToMain", true, false);
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
-
-    /**
      * 이 바이트코드(.class)를 특정 전략에 맞게(code) 조작 후 반환
+     * 현재 모듈화하였으나, modifyHikariCP_addLog에 종속(확장 예정)
      *
      * @param classfileBuffer
      * @param code
@@ -104,6 +74,25 @@ public class HikariTransformer implements ClassFileTransformer {
         if (setPrint) CodePrinter.printClass(result, cn.name, deleteLastFile); //Print class
         return result;
     }
+
+
+    /**
+     * 'AppClassLaoder'사용 && 'SpringApplication이 존재하는 Main 메서드 탐색'하여 True시 전역변수 코드 변조
+     */
+//    private boolean modifyMainClass_addClassForNameCode(byte[] classfileBuffer, String ClassLoaderName) {
+//        if(ClassLoaderName.contains("AppClassLoader")) { //Application Class Loader인지 여부
+//            //Class에 @SpringBootApplication가 있는지? (SpringApplication에 존재)
+//            if (CheckSpringApplicationAnnotation.check(classfileBuffer)) {
+//                log.info("[CheckSpringApplicationAnnotation]@SpringBootApplication 확인");
+//                isModifiedMain = true;
+//                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddAdditionalObjectToMain", true, false);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+
 }
 
 
