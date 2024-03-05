@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -31,6 +32,7 @@ public class SqlServiceImpl implements SqlService {
     public void create(String etc) {
         SqlDummy s =  new SqlDummy();
         s.setEtc(etc);
+        s.setTime(LocalDateTime.now());
         sqlDummyRepository.save(s);
     }
     @Override
@@ -72,4 +74,6 @@ public class SqlServiceImpl implements SqlService {
         List<SqlDummy> list = sqlDummyRepository.getLists(PageRequest.of(pageNumber, pageSize));
         return EntityTransfer.run(list);
     }
+
 }
+
