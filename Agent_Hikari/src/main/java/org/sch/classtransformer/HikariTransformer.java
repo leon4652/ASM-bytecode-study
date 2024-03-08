@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
-import org.sch.asm_tree_api.ClassNodeTransformationStrategy;
+import org.sch.asm_tree_api.hikari.HikariClassNodeTransformationStrategy;
 import org.sch.util.CodePrinter;
 
 import java.lang.instrument.ClassFileTransformer;
@@ -44,8 +44,8 @@ private boolean modifyHikariCP_addLog(byte[] classfileBuffer, String className) 
 //                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerProxyPreparedStatement", true, false);
 //                return true;
 //            }
-            case "com/zaxxer/hikari/pool/HikariProxyConnection" -> {
-                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerHikariProxyConnection", true, false);
+            case "com/zaxxer/hikari/pool/ProxyConnection" -> {
+                modifiedBytecodeInLocalMethod = modifyByteCode(classfileBuffer, "AddLoggerProxyConnection", true, false);
                 return true;
             }
             default -> {}
@@ -67,7 +67,7 @@ private boolean modifyHikariCP_addLog(byte[] classfileBuffer, String className) 
         ClassReader cr = new ClassReader(classfileBuffer);
         ClassNode cn = new ClassNode();
         cr.accept(cn, 0);
-        ClassNodeTransformationStrategy.select(cn, code); //[HERE] Transfer Logic Apply
+        HikariClassNodeTransformationStrategy.select(cn, code); //[HERE] Transfer Logic Apply
         ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         cn.accept(cw);
         byte[] result = cw.toByteArray(); //result

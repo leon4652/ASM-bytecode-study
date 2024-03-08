@@ -1,0 +1,82 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+
+}
+
+group = 'org.sch'
+version = '1.2'
+
+java {
+    sourceCompatibility = '1.8'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // https://mvnrepository.com/artifact/org.ow2.asm/asm
+    implementation 'org.ow2.asm:asm:9.6'
+    implementation 'org.ow2.asm:asm-commons:9.6'
+    implementation 'org.ow2.asm:asm-util:9.6'
+
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    compileOnly 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
+
+    // for SLF4J API, (Logback)
+//    implementation 'ch.qos.logback:logback-classic:1.4.12'
+
+    // for AspectJ (weaving)
+//    runtimeOnly 'org.aspectj:aspectjweaver:1.9.21'
+//    runtimeOnly 'org.aspectj:aspectjrt:1.9.21'
+
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+////Build.gradle에서 다음과 같이 지정하면, 이전처럼 수동으로 만들 필요 없이 기본적으로 MANIFEST.MF 파일을 만들어준다.
+//shadowJar으로 대체
+//jar {
+//    manifest {
+//        attributes(
+//                'Manifest-Version': '1.0',
+//                'Premain-Class': 'org.agent.MyAgent',
+//                'Can-Redefine-Classes': 'true',
+//                'Can-Retransform-Classes': 'true'
+//        )
+//    }
+//}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+//shadowJar 설정
+shadowJar {
+    archiveClassifier.set('')
+    minimize(); //불필요한 파일 및 중복 제거
+    manifest {
+        attributes(
+                'Manifest-Version': '1.0',
+                'Premain-Class': 'org.sch.HikariAgent',
+                'Can-Redefine-Classes': 'true',
+                'Can-Retransform-Classes': 'true'
+        )
+    }
+}
