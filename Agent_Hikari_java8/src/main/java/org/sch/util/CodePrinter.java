@@ -2,7 +2,6 @@ package org.sch.util;
 
 
 
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,7 +10,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-@Slf4j
 public class CodePrinter {
 
     /**
@@ -42,9 +40,9 @@ public class CodePrinter {
 
             out.write(bytecodes);
             out.close();
-            log.info("[CODE_PRINTER_DONE] byteLog print done. : " + name);
+            System.out.println("[CODE_PRINTER_DONE] byteLog print done. : " + name);
         } catch (IOException e) {
-            log.warn("[CODE_PRINTER ERR] : {}", e.getMessage());
+            System.out.println("[CODE_PRINTER ERR] : " + e.getMessage());
         }
     }
 

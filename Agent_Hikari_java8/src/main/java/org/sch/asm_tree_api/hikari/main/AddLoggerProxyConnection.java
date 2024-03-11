@@ -3,6 +3,8 @@ package org.sch.asm_tree_api.hikari.main;
 import org.objectweb.asm.tree.*;
 import org.sch.util.LoggerUtil;
 
+import static org.objectweb.asm.Opcodes.GETSTATIC;
+import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 import static org.sch.asm_tree_api.hikari.util.GetInputParamInMethods.findInputParameter;
 
 /**
@@ -36,6 +38,7 @@ public class AddLoggerProxyConnection {
         int loggerIndex = LoggerUtil.loggerInstanceInit(cn, mn, il);
         LoggerUtil.sendLogString(il, loggerIndex, "setPrepareStatement 동작 : " + mn.name, LoggerUtil.LogType.info);
         findInputParameter(cn, mn, il); //입력 변수 로깅
+
         mn.instructions.insert(il);
     }
 
@@ -44,6 +47,7 @@ public class AddLoggerProxyConnection {
         int loggerIndex = LoggerUtil.loggerInstanceInit(cn, mn, il);
         LoggerUtil.sendLogString(il, loggerIndex, "setPrepareCall 동작 : " + mn.name, LoggerUtil.LogType.info);
         findInputParameter(cn, mn, il); //입력 변수 로깅
+
         mn.instructions.insert(il);
     }
 
@@ -52,6 +56,7 @@ public class AddLoggerProxyConnection {
         int loggerIndex = LoggerUtil.loggerInstanceInit(cn, mn, il);
         LoggerUtil.sendLogString(il, loggerIndex, "setCreateStatement 동작 : " + mn.name, LoggerUtil.LogType.info);
         findInputParameter(cn, mn, il); //입력 변수 로깅
+
         mn.instructions.insert(il);
     }
 

@@ -33,7 +33,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     compileOnly 'org.slf4j:slf4j-api:1.7.30'
-    implementation 'org.slf4j:slf4j-simple:1.7.30'
+    //implementation 'org.slf4j:slf4j-simple:1.7.30' //만약 Agent에서 별도로 Slf4j를 사용한다면
 
     // for SLF4J API, (Logback)
 //    implementation 'ch.qos.logback:logback-classic:1.4.12'

@@ -14,23 +14,24 @@ import java.security.ProtectionDomain;
 /**
  * This class implements the ClassFileTransformer interface to transform class files.
  */
-@Slf4j
+
 public class HikariTransformer implements ClassFileTransformer {
     int cnt = 0;
-    byte[] modifiedBytecodeInLocalMethod; //지역변수에서 수정된 바이트코드
+    byte[] modifiedBytecodeInLocalMethod; //지역 메서드에서 수정된 바이트코드
 //    public static boolean isModifiedMain = false; //main Class 변조 유무
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
 
         //HikariCP 파싱 후 변환
         if (className.contains("com/zaxxer/hikari/")) {
-            log.info("changhak : {}", className);
+            System.out.println("[HikariTransformer] className : " + className);
             if(modifyHikariCP_addLog(classfileBuffer, className)) return modifiedBytecodeInLocalMethod;
-            //전체 로깅
-//          return modifyByteCode(classfileBuffer, "AddLoggerAllClass", true, false);
+
         }
 
-        if(cnt++ % 50 == 0) log.info("CCNNTT : {}", className);
+//        if(className.contains("com/sysone")) {
+//            return modifyByteCode(classfileBuffer, "AddLoggerAllClass", false, false);
+//        }
         return classfileBuffer;
     }
 

@@ -6,6 +6,10 @@ import org.sch.util.LoggerUtil;
 
 import java.util.Iterator;
 
+import static org.objectweb.asm.Opcodes.GETSTATIC;
+import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
+
+
 /**
  * use for modify test, add logging
  */
@@ -25,8 +29,8 @@ public class AddLoggerAllClass {
             String content = "[class/method] : " + cn.name + " : " + methodNode.name;
             LoggerUtil.sendLogString(il, loggerIndex, content, LoggerUtil.LogType.valueOf("info"));
 
-            methodNode.instructions.insert(il); //return보다 앞서서 메서드 맨 위에 지시문 추가.
 
+            methodNode.instructions.insert(il); //return보다 앞서서 메서드 맨 위에 지시문 추가.
         }
     }
 }
